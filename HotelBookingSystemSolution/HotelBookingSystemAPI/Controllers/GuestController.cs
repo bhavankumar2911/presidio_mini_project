@@ -38,5 +38,21 @@ namespace HotelBookingSystemAPI.Controllers
                 return Conflict(new ErrorResponse(409, ex.Message));
             }
         }
+
+        [HttpPost("/guest/login")]
+        [ProducesResponseType(typeof(LoginGuestReturnDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status401Unauthorized)]
+        public async Task<ActionResult<LoginGuestReturnDTO>> Login (LoginGuestInputDTO loginGuestInputDTO)
+        {
+            try
+            {
+                LoginGuestReturnDTO loginGuestReturn = await _guestService.LoginGuest(loginGuestInputDTO);
+
+                return Ok(loginGuestReturn);
+            } catch (WrongGuestLoginCredentialsException ex)
+            {
+                return Unauthorized(new ErrorResponse(401, ex.Message));
+            }
+        }
     }
 }
