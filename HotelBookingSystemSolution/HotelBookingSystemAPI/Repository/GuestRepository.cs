@@ -40,7 +40,7 @@ namespace HotelBookingSystemAPI.Repository
         {
             var guests = await _context.Guests.ToListAsync();
 
-            if (guests.Count == 0) throw new NoGuestsFoundException();
+            //if (guests.Count == 0) throw new NoGuestsFoundException();
 
             return guests;
         }

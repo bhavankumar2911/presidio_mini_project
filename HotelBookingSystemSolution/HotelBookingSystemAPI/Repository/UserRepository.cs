@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace HotelBookingSystemAPI.Repository
 {
-    public abstract class UserRepository : IRepository<int, User>
+    public class UserRepository : IRepository<int, User>
     {
         private readonly HotelBookingSystemContext _context;
 
@@ -41,7 +41,7 @@ namespace HotelBookingSystemAPI.Repository
         {
             var users = await _context.Users.ToListAsync();
 
-            if (users.Count == 0) throw new NoUsersFoundException();
+            //if (users.Count == 0) throw new NoUsersFoundException();
 
             return users;
         }

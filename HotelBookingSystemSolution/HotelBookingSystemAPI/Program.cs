@@ -1,5 +1,12 @@
 using HotelBookingSystemAPI.Context;
+using HotelBookingSystemAPI.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using RoleBasedAuthenticationAPI.Services.Interfaces;
+using RoleBasedAuthenticationAPI.Services;
+using HotelBookingSystemAPI.Models;
+using HotelBookingSystemAPI.Repository;
+using HotelBookingSystemAPI.Services.Interfaces;
+using HotelBookingSystemAPI.Services;
 
 namespace HotelBookingSystemAPI
 {
@@ -22,6 +29,16 @@ namespace HotelBookingSystemAPI
            );
             #endregion
 
+            #region repositories
+            builder.Services.AddScoped<IRepository<int, Guest>, GuestRepository>();
+            builder.Services.AddScoped<IRepository<int, User>, UserRepository>();
+            #endregion
+
+            #region services
+            builder.Services.AddScoped<IGuestService, GuestService>();
+            //builder.Services.AddScoped<ITokenService, TokenService>();
+            #endregion
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -31,8 +48,8 @@ namespace HotelBookingSystemAPI
                 app.UseSwaggerUI();
             }
 
+            app.UseAuthentication();
             app.UseAuthorization();
-
 
             app.MapControllers();
 
