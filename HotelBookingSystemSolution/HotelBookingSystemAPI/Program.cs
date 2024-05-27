@@ -42,6 +42,7 @@ namespace HotelBookingSystemAPI
             builder.Services.AddScoped<IHotelService, HotelService>();
             builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
             builder.Services.AddScoped<IAddressService, AddressService>();
+            builder.Services.AddScoped<IAdminService, AdminService>();
             #endregion
 
             var app = builder.Build();
