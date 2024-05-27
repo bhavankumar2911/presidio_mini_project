@@ -22,7 +22,7 @@ namespace HotelBookingSystemAPI.Services
             _tokenService = tokenService;
         }
 
-        private async Task<User> CheckIfEmailAlreadyExists (string email)
+        private async Task<User> CheckIfEmailAlreadyExists(string email)
         {
             IEnumerable<User> users = await _userRepository.GetAll();
 

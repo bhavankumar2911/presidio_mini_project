@@ -32,11 +32,16 @@ namespace HotelBookingSystemAPI
             #region repositories
             builder.Services.AddScoped<IRepository<int, Guest>, GuestRepository>();
             builder.Services.AddScoped<IRepository<int, User>, UserRepository>();
+            builder.Services.AddScoped<IRepository<int, Hotel>, HotelRepository>();
+            builder.Services.AddScoped<IRepository<int, Address>, AddressRepository>();
             #endregion
 
             #region services
             builder.Services.AddScoped<IGuestService, GuestService>();
             builder.Services.AddScoped<ITokenService, TokenService>();
+            builder.Services.AddScoped<IHotelService, HotelService>();
+            builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
+            builder.Services.AddScoped<IAddressService, AddressService>();
             #endregion
 
             var app = builder.Build();
