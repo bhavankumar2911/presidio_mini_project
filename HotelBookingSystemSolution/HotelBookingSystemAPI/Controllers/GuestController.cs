@@ -53,6 +53,10 @@ namespace HotelBookingSystemAPI.Controllers
             {
                 return Unauthorized(new ErrorResponse(401, ex.Message));
             }
+            catch (UnauthorizedException ex)
+            {
+                return Unauthorized(new ErrorResponse(401, ex.Message));
+            }
         }
     }
 }

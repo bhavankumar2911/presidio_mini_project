@@ -1,4 +1,5 @@
-﻿using HotelBookingSystemAPI.Exceptions.Guest;
+﻿using HotelBookingSystemAPI.Exceptions;
+using HotelBookingSystemAPI.Exceptions.Guest;
 using HotelBookingSystemAPI.Models;
 using HotelBookingSystemAPI.Models.DTOs;
 using HotelBookingSystemAPI.Repository.Interfaces;
@@ -183,6 +184,9 @@ namespace HotelBookingSystemAPI.Services
 
             if (user == null) throw new WrongGuestLoginCredentialsException();
 
+            // check role
+            if (user.Role != "guest") throw new UnauthorizedException();
+
             // check password
             HMACSHA512 hMACSHA512 = new HMACSHA512(user.PasswordHashKey);
             byte[] hashedPassword = hMACSHA512.ComputeHash(Encoding.UTF8.GetBytes(loginGuestInputDTO.PlainTextPassword));
@@ -191,7 +195,7 @@ namespace HotelBookingSystemAPI.Services
             {
                 Guest guest = await GetGuestFromUser(user.Id);
 
-                if (guest.IsBlocked) throw new Exception("You are unauthorized");
+                if (guest.IsBlocked) throw new UnauthorizedException();
 
                 return CreateGuestLoginReturn(user, guest, _tokenService.GenerateToken(guest.Id, user.Role));
             }

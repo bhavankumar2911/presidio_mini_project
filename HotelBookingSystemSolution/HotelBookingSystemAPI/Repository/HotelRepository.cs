@@ -45,9 +45,27 @@ namespace HotelBookingSystemAPI.Repository
             return hotels;
         }
 
+        async public Task<IEnumerable<Hotel>> GetAllWithAddress()
+        {
+            var hotels = await _context.Hotels.Include(h => h.Address).ToListAsync();
+
+            //if (hotels.Count == 0) throw new NoHotelsFoundException();
+
+            return hotels;
+        }
+
         public async Task<Hotel> GetByKey(int key)
         {
             var hotel = await _context.Hotels.FirstOrDefaultAsync(e => e.Id == key);
+
+            if (hotel != null) return hotel;
+
+            throw new HotelNotFoundException(key);
+        }
+
+        public async Task<Hotel> GetByKeyWithAddress(int key)
+        {
+            var hotel = await _context.Hotels.Include(h => h.Address).FirstOrDefaultAsync(e => e.Id == key);
 
             if (hotel != null) return hotel;
 

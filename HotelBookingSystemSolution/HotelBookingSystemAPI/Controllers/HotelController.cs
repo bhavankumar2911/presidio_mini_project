@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using HotelBookingSystemAPI.Services.Interfaces;
 using HotelBookingSystemAPI.Exceptions.Hotel;
+using HotelBookingSystemAPI.Services;
 
 namespace HotelBookingSystemAPI.Controllers
 {
@@ -36,6 +37,27 @@ namespace HotelBookingSystemAPI.Controllers
             catch (HotelPhoneNumberAlreadyInUseException ex)
             {
                 return Conflict(new ErrorResponse(409, ex.Message));
+            }
+        }
+
+        [HttpPost("/hotel/login")]
+        [ProducesResponseType(typeof(LoginHotelReturnDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status401Unauthorized)]
+        public async Task<ActionResult<LoginHotelReturnDTO>> Login(LoginHotelInputDTO loginHotelInputDTO)
+        {
+            try
+            {
+                LoginHotelReturnDTO loginHotelReturnDTO = await _hotelService.LoginHotel(loginHotelInputDTO);
+
+                return Ok(loginHotelReturnDTO);
+            }
+            catch (WrongGuestLoginCredentialsException ex)
+            {
+                return Unauthorized(new ErrorResponse(401, ex.Message));
+            }
+            catch (UnauthorizedException ex)
+            {
+                return Unauthorized(new ErrorResponse(401, ex.Message));
             }
         }
     }

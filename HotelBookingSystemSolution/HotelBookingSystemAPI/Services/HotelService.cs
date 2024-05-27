@@ -1,4 +1,5 @@
-﻿using HotelBookingSystemAPI.Exceptions.Guest;
+﻿using HotelBookingSystemAPI.Exceptions;
+using HotelBookingSystemAPI.Exceptions.Guest;
 using HotelBookingSystemAPI.Exceptions.Hotel;
 using HotelBookingSystemAPI.Models;
 using HotelBookingSystemAPI.Models.DTOs;
@@ -6,7 +7,9 @@ using HotelBookingSystemAPI.Repository;
 using HotelBookingSystemAPI.Repository.Interfaces;
 using HotelBookingSystemAPI.Services.Interfaces;
 using RoleBasedAuthenticationAPI.Services.Interfaces;
+using System.Net;
 using System.Security.Cryptography;
+using System.Text;
 
 namespace HotelBookingSystemAPI.Services
 {
@@ -14,17 +17,19 @@ namespace HotelBookingSystemAPI.Services
     {
         private readonly IRepository<int, User> _userRepository;
         private readonly IRepository<int, Hotel> _hotelRepository;
+        private readonly IRepository<int, Address> _addressRepository;
         private readonly ITokenService _tokenService;
         private readonly IAuthenticationService _authenticationService;
         private readonly IAddressService _addressService;
 
-        public HotelService(IRepository<int, User> userRepository, IRepository<int, Hotel> hotelRepository, ITokenService tokenService, IAuthenticationService authenticationService, IAddressService addressService)
+        public HotelService(IRepository<int, User> userRepository, IRepository<int, Hotel> hotelRepository, ITokenService tokenService, IAuthenticationService authenticationService, IAddressService addressService, IRepository<int, Address> addressRepository)
         {
             _tokenService = tokenService;
             _userRepository = userRepository;
             _hotelRepository = hotelRepository;
             _authenticationService = authenticationService;
             _addressService = addressService;
+            _addressRepository = addressRepository;
         }
 
         private async Task<User> CheckIfEmailAlreadyExists(string email)
@@ -118,6 +123,75 @@ namespace HotelBookingSystemAPI.Services
             Hotel newHotel = await _hotelRepository.Add(hotel);
 
             return CreateHotelRegisterReturn(newUser, newHotel, address);
+        }
+
+        private async Task<Hotel> GetHotelFromUser(int userId)
+        {
+            IEnumerable<Hotel> hotels = await _hotelRepository.GetAll();
+
+            if (hotels.Count() == 0) throw new NoHotelsFoundException();
+
+            foreach (Hotel hotel in hotels)
+            {
+                if (hotel.UserId == userId) return hotel;
+            }
+
+            throw new WrongHotelLoginCredentialsException();
+        }
+
+        private LoginHotelReturnDTO CreateHotelLoginReturn(User user, Hotel hotel, Address address, string token)
+        {
+            RegisterHotelReturnDTO returnHotel = new RegisterHotelReturnDTO()
+            {
+                Id = hotel.Id,
+                Name = hotel.Name,
+                Email = user.Email,
+                Phone = hotel.Phone,
+                Description = hotel.Description,
+                IsApproved = false,
+                Address = new AddressInputDTO
+                {
+                    BuildingNoAndName = address.BuildingNoAndName,
+                    StreetNoAndName = address.StreetNoAndName,
+                    City = address.City,
+                    State = address.State,
+                    Pincode = address.Pincode,
+                }
+            };
+
+            return new LoginHotelReturnDTO
+            {
+                Hotel = returnHotel,
+                Token = token
+            };
+        }
+
+        public async Task<LoginHotelReturnDTO> LoginHotel(LoginHotelInputDTO loginHotelInputDTO)
+        {
+            User user = await CheckIfEmailAlreadyExists(loginHotelInputDTO.Email);
+
+            if (user == null) throw new WrongHotelLoginCredentialsException();
+
+            // check role
+            if (user.Role != "hotel") throw new UnauthorizedException();
+
+            // check password
+            HMACSHA512 hMACSHA512 = new HMACSHA512(user.PasswordHashKey);
+            byte[] hashedPassword = _authenticationService.GetHashedPassword(hMACSHA512, loginHotelInputDTO.PlainTextPassword);
+
+            if (_authenticationService.ComparePassword(hashedPassword, user.HashedPassword))
+            {
+                Hotel hotel = await GetHotelFromUser(user.Id);
+
+                if (!hotel.IsApproved) throw new UnauthorizedException();
+
+                // fetching address
+                Address address = await _addressRepository.GetByKey(hotel.AddressId);
+
+                return CreateHotelLoginReturn(user, hotel, address, _tokenService.GenerateToken(hotel.Id, user.Role));
+            }
+
+            throw new WrongGuestLoginCredentialsException();
         }
     }
 }

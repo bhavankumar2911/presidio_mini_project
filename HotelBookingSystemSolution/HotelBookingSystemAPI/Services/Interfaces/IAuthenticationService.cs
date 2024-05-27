@@ -9,6 +9,8 @@ namespace HotelBookingSystemAPI.Services.Interfaces
 
         public byte[] GetHashedPassword(HMACSHA512 hMACSHA, string plainTextPassword);
 
+        public bool ComparePassword(byte[] passwordFromUser, byte[] passwordInDB);
+
         public User PrepareUserForRegister(string email, string role, byte[] passwordHashKey, byte[] hashedPassword);
     }
 }
