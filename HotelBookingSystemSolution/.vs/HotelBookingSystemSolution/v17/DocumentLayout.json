@@ -50,8 +50,7 @@
               "RelativeToolTip": "HotelBookingSystemAPI\\Services\\Interfaces\\IHotelService.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-27T04:06:51.861Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-27T04:06:51.861Z"
             },
             {
               "$type": "Document",
@@ -63,8 +62,7 @@
               "RelativeToolTip": "HotelBookingSystemAPI\\appsettings.json",
               "ViewState": "AQIAAA8AAAAAAAAAAAAAAAwAAAAEAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-05-25T16:23:05.767Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-25T16:23:05.767Z"
             },
             {
               "$type": "Document",
@@ -100,8 +98,7 @@
               "RelativeToolTip": "HotelBookingSystemAPI\\Services\\GuestService.cs",
               "ViewState": "AQIAAIIAAAAAAAAAAADwv7YAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-25T14:09:25.829Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-25T14:09:25.829Z"
             },
             {
               "$type": "Document",
@@ -123,7 +120,7 @@
               "RelativeDocumentMoniker": "HotelBookingSystemAPI\\Services\\Interfaces\\IGuestService.cs",
               "ToolTip": "C:\\Users\\VC\\Documents\\Training\\MiniProject\\HotelBookingSystemSolution\\HotelBookingSystemAPI\\Services\\Interfaces\\IGuestService.cs",
               "RelativeToolTip": "HotelBookingSystemAPI\\Services\\Interfaces\\IGuestService.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAkAAAAFAAAA",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAUAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-25T13:55:30.829Z",
               "EditorCaption": ""
