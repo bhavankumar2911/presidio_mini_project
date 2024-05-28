@@ -98,5 +98,26 @@ namespace HotelBookingSystemAPI.Controllers
                 return NotFound(new ErrorResponse(404, ex.Message));
             }
         }
+
+        [Authorize(Roles = "admin")]
+        [HttpPut("/hotel/status_update")]
+        [ProducesResponseType(typeof(SuccessResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status409Conflict)]
+        public async Task<ActionResult<SuccessResponse>> UpdateHotelApprovalStatus(int hotelId, bool newApprovalStatus)
+        {
+            try
+            {
+                await _hotelService.ChangeHotelApprovalStatus(hotelId, newApprovalStatus);
+
+                return Ok(new SuccessResponse("Hotel approval status updated."));
+            } catch (HotelNotFoundException ex)
+            {
+                return NotFound(new ErrorResponse(StatusCodes.Status404NotFound, ex.Message));
+            } catch (HotelApprovalException ex)
+            {
+                return Conflict(new ErrorResponse(StatusCodes.Status409Conflict, ex.Message));
+            }
+        }
     }
 }

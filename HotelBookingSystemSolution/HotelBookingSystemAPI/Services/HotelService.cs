@@ -224,5 +224,21 @@ namespace HotelBookingSystemAPI.Services
 
             return result;
         }
+
+        public async Task ChangeHotelApprovalStatus(int hotelId, bool newApprovalStatus)
+        {
+            Hotel hotel = await _hotelRepository.GetByKey(hotelId);
+
+            if (hotel.IsApproved == newApprovalStatus)
+            {
+                if (newApprovalStatus) throw new HotelApprovalException("Hotel has been approved already.");
+
+                throw new HotelApprovalException("Hotel is already pending approval.");
+            }
+
+            hotel.IsApproved = newApprovalStatus;
+
+            await _hotelRepository.Update(hotel);
+        }
     }
 }

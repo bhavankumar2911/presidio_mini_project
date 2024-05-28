@@ -13,5 +13,7 @@ namespace HotelBookingSystemAPI.Services.Interfaces
         public Task<IEnumerable<Hotel>> ListAllHotels();
 
         public Task<IEnumerable<Hotel>> ListAllHotelsByApprovalStatus(bool isApproved);
+
+        public Task ChangeHotelApprovalStatus(int hotelId, bool newApprovalStatus);
     }
 }
