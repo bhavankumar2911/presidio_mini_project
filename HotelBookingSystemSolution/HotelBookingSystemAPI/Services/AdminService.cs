@@ -8,6 +8,8 @@ using System.Security.Cryptography;
 using System.Text;
 using HotelBookingSystemAPI.Repository;
 using HotelBookingSystemAPI.Repository.Interfaces;
+using HotelBookingSystemAPI.Models.DTOs.Hotel;
+using HotelBookingSystemAPI.Exceptions.Hotel;
 
 namespace HotelBookingSystemAPI.Services
 {

@@ -67,3 +67,5 @@ C:\Users\VC\Documents\Training\MiniProject\HotelBookingSystemSolution\HotelBooki
 C:\Users\VC\Documents\Training\MiniProject\HotelBookingSystemSolution\HotelBookingSystemAPI\obj\Debug\net6.0\HotelBookingSystemAPI.pdb
 C:\Users\VC\Documents\Training\MiniProject\HotelBookingSystemSolution\HotelBookingSystemAPI\obj\Debug\net6.0\HotelBookingSystemAPI.genruntimeconfig.cache
 C:\Users\VC\Documents\Training\MiniProject\HotelBookingSystemSolution\HotelBookingSystemAPI\obj\Debug\net6.0\ref\HotelBookingSystemAPI.dll
+C:\Users\VC\Documents\Training\MiniProject\HotelBookingSystemSolution\HotelBookingSystemAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\VC\Documents\Training\MiniProject\HotelBookingSystemSolution\HotelBookingSystemAPI\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll

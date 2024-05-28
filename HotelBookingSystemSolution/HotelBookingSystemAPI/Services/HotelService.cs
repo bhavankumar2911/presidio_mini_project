@@ -3,6 +3,7 @@ using HotelBookingSystemAPI.Exceptions.Guest;
 using HotelBookingSystemAPI.Exceptions.Hotel;
 using HotelBookingSystemAPI.Models;
 using HotelBookingSystemAPI.Models.DTOs;
+using HotelBookingSystemAPI.Models.DTOs.Hotel;
 using HotelBookingSystemAPI.Repository;
 using HotelBookingSystemAPI.Repository.Interfaces;
 using HotelBookingSystemAPI.Services.Interfaces;
@@ -17,12 +18,13 @@ namespace HotelBookingSystemAPI.Services
     {
         private readonly IRepository<int, User> _userRepository;
         private readonly IRepository<int, Hotel> _hotelRepository;
+        private readonly IHotelWithAddressRepository _hotelAddressRepository;
         private readonly IRepository<int, Address> _addressRepository;
         private readonly ITokenService _tokenService;
         private readonly IAuthenticationService _authenticationService;
         private readonly IAddressService _addressService;
 
-        public HotelService(IRepository<int, User> userRepository, IRepository<int, Hotel> hotelRepository, ITokenService tokenService, IAuthenticationService authenticationService, IAddressService addressService, IRepository<int, Address> addressRepository)
+        public HotelService(IRepository<int, User> userRepository, IRepository<int, Hotel> hotelRepository, ITokenService tokenService, IAuthenticationService authenticationService, IAddressService addressService, IRepository<int, Address> addressRepository, IHotelWithAddressRepository hotelAddressRepository)
         {
             _tokenService = tokenService;
             _userRepository = userRepository;
@@ -30,6 +32,7 @@ namespace HotelBookingSystemAPI.Services
             _authenticationService = authenticationService;
             _addressService = addressService;
             _addressRepository = addressRepository;
+            _hotelAddressRepository = hotelAddressRepository;
         }
 
         private async Task<User> CheckIfEmailAlreadyExists(string email)
@@ -192,6 +195,34 @@ namespace HotelBookingSystemAPI.Services
             }
 
             throw new WrongGuestLoginCredentialsException();
+        }
+
+        public async Task<IEnumerable<Hotel>> ListAllHotels()
+        {
+            IEnumerable<Hotel> hotels = await _hotelAddressRepository.GetAllWithAddress();
+            //IEnumerable<Hotel> hotels = await _hotelRepository.GetAll();
+
+            if (hotels.Count() == 0) throw new NoHotelsFoundException();
+
+            return hotels;
+        }
+
+        public async Task<IEnumerable<Hotel>> ListAllHotelsByApprovalStatus(bool isApproved)
+        {
+            IEnumerable<Hotel> hotels = await _hotelAddressRepository.GetAllWithAddress();
+
+            if (hotels.Count() == 0) throw new NoHotelsFoundException();
+
+            IList<Hotel> result = new List<Hotel>();
+
+            foreach (var hotel in hotels)
+            {
+                if (hotel.IsApproved == isApproved) result.Add(hotel);
+            }
+
+            if (result.Count == 0) throw new NoHotelsFoundException();
+
+            return result;
         }
     }
 }

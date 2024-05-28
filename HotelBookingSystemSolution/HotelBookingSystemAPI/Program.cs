@@ -7,6 +7,9 @@ using HotelBookingSystemAPI.Models;
 using HotelBookingSystemAPI.Repository;
 using HotelBookingSystemAPI.Services.Interfaces;
 using HotelBookingSystemAPI.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace HotelBookingSystemAPI
 {
@@ -23,6 +26,19 @@ namespace HotelBookingSystemAPI
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
+                    {
+                        ValidateIssuer = false,
+                        ValidateAudience = false,
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["TokenKey:JWT"]))
+                    };
+
+                });
+
             #region context
             builder.Services.AddDbContext<HotelBookingSystemContext>(
            options => options.UseSqlServer(builder.Configuration.GetConnectionString("defaultConnection"))
@@ -34,6 +50,7 @@ namespace HotelBookingSystemAPI
             builder.Services.AddScoped<IRepository<int, User>, UserRepository>();
             builder.Services.AddScoped<IRepository<int, Hotel>, HotelRepository>();
             builder.Services.AddScoped<IRepository<int, Address>, AddressRepository>();
+            builder.Services.AddScoped<IHotelWithAddressRepository, HotelWithAddressRepository>();
             #endregion
 
             #region services

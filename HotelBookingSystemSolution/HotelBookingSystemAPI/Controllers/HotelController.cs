@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using HotelBookingSystemAPI.Services.Interfaces;
 using HotelBookingSystemAPI.Exceptions.Hotel;
 using HotelBookingSystemAPI.Services;
+using HotelBookingSystemAPI.Models.DTOs.Hotel;
+using Microsoft.AspNetCore.Authorization;
+using HotelBookingSystemAPI.Models;
 
 namespace HotelBookingSystemAPI.Controllers
 {
@@ -58,6 +61,41 @@ namespace HotelBookingSystemAPI.Controllers
             catch (UnauthorizedException ex)
             {
                 return Unauthorized(new ErrorResponse(401, ex.Message));
+            }
+        }
+
+        [Authorize(Roles = "admin")]
+        [HttpGet("/hotels")]
+        [ProducesResponseType(typeof(IEnumerable<Hotel>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<IEnumerable<Hotel>>> ListHotels ()
+        {
+            try
+            {
+                IEnumerable<Hotel> hotels = await _hotelService.ListAllHotels();
+
+                return Ok(hotels);
+            } catch (NoHotelsFoundException ex)
+            {
+                return NotFound(new ErrorResponse(404, ex.Message));
+            }
+        }
+
+        [Authorize(Roles = "admin")]
+        [HttpGet("/hotels/status")]
+        [ProducesResponseType(typeof(IEnumerable<Hotel>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<IEnumerable<Hotel>>> ListHotelsByStatus(bool isApproved)
+        {
+            try
+            {
+                IEnumerable<Hotel> hotels = await _hotelService.ListAllHotelsByApprovalStatus(isApproved);
+
+                return Ok(hotels);
+            }
+            catch (NoHotelsFoundException ex)
+            {
+                return NotFound(new ErrorResponse(404, ex.Message));
             }
         }
     }

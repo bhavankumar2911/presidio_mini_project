@@ -13,7 +13,7 @@ namespace HotelBookingSystemAPI.Models
         public string State { get; set; } = string.Empty;
         public string Pincode { get; set; } = string.Empty;
 
-        public Hotel? Hotel { get; set; }
+        //public Hotel? Hotel { get; set; }
         //public int? HotelId { get; set; }
     }
 }
