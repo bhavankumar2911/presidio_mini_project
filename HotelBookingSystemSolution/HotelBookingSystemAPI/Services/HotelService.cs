@@ -103,7 +103,7 @@ namespace HotelBookingSystemAPI.Services
 
             if (hotels.Count() > 0)
             {
-                if (CheckIfPhoneNumberAlreadyExists(hotels, registerHotelInputDTO.Phone)) throw new GuestPhoneNumberAlreadyInUseException(registerHotelInputDTO.Phone);
+                if (CheckIfPhoneNumberAlreadyExists(hotels, registerHotelInputDTO.Phone)) throw new HotelPhoneNumberAlreadyInUseException(registerHotelInputDTO.Phone);
             }
 
             // create password hash key

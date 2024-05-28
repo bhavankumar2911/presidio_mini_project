@@ -38,8 +38,9 @@ namespace HotelBookingSystemAPI.Context
 
             modelBuilder.Entity<Hotel>()
                 .HasOne(h => h.Address);
-                //.WithOne(a => a.Hotel)
-                //.OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Room>()
+                .HasOne(r => r.Hotel);
 
             //modelBuilder.Entity<User>()
             //    .HasOne(u => u.Guest)

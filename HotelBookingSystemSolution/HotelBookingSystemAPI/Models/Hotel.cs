@@ -22,7 +22,5 @@ namespace HotelBookingSystemAPI.Models
         public ICollection<Review>? Reviews { get; set; }
 
         public ICollection<Rating>? Ratings { get; set; }
-
-        public ICollection<Room>? Rooms { get; set; }
     }
 }
