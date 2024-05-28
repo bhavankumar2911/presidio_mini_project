@@ -5,7 +5,7 @@ namespace HotelBookingSystemAPI.Models
 {
     public enum RoomSize
     {
-        Small, Medium, Large
+        Small, Medium, Large, Default
     }
 
     public class Room

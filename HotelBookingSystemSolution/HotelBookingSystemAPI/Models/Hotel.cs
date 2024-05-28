@@ -11,8 +11,8 @@ namespace HotelBookingSystemAPI.Models
         public bool IsApproved { get; set; } = false;
         public string Phone { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
-        
-        public Address? Address { get; set; }
+
+        public Address Address { get; set; } = null!;
         public int AddressId { get; set; }
 
         public User? User { get; set; }

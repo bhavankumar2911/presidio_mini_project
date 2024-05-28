@@ -47,5 +47,21 @@ namespace HotelBookingSystemAPI.Controllers
                 return Conflict(new ErrorResponse(StatusCodes.Status409Conflict, ex.Message));
             }
         }
+
+        [HttpGet("/room")]
+        [ProducesResponseType(typeof(SuccessResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<SuccessResponse>> ListRooms(RoomFilterDTO roomFilterDTO)
+        {
+            try
+            {
+                IEnumerable<Room> rooms = await _roomService.ListRoomsForBooking(roomFilterDTO);
+
+                return Ok(new SuccessResponse(rooms));
+            } catch (NoRoomsAvailableExpection ex)
+            {
+                return NotFound(new ErrorResponse(StatusCodes.Status404NotFound, ex.Message));
+            }
+        }
     }
 }
