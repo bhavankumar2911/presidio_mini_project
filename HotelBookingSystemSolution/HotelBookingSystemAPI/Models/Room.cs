@@ -23,6 +23,6 @@ namespace HotelBookingSystemAPI.Models
         //[ForeignKey("Hotel")]
         public int HotelId { get; set; }
 
-        public ICollection<Booking>? Bookings { get; set; }
+        //public ICollection<Booking>? Bookings { get; set; }
     }
 }

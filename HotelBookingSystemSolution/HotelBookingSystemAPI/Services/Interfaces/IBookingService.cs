@@ -5,6 +5,6 @@ namespace HotelBookingSystemAPI.Services.Interfaces
 {
     public interface IBookingService
     {
-        public Booking BookRoom(BookingInputDTO bookingInputDTO, int bookingGuestId);
+        public Task<Booking> BookRoom(BookingInputDTO bookingInputDTO, int bookingGuestId);
     }
 }

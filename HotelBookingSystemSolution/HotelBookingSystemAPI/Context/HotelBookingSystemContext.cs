@@ -19,33 +19,12 @@ namespace HotelBookingSystemAPI.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // primary keys
-            //modelBuilder.Entity<User>().HasKey(p => p.Id);
-            //modelBuilder.Entity<Hotel>().HasKey(h => h.Id);
-            //modelBuilder.Entity<Address>().HasKey(a => a.Id);
-            //modelBuilder.Entity<Review>().HasKey(r => r.Id);
-            //modelBuilder.Entity<Booking>().HasKey(b => b.Id);
-            //modelBuilder.Entity<BookingGuest>().HasKey(bg => bg.Id);
-            //modelBuilder.Entity<Rating>().HasKey(r => r.Id);
-            //modelBuilder.Entity<Room>().HasKey(r => r.Id);
-
-            //modelBuilder.Entity<Hotel>()
-            //    .HasOne(a => a.Address)
-            //    .WithOne(h => h.Hotel)
-            //    .HasForeignKey<Address>(a => a.HotelId)
-            //    .IsRequired()
-            //    .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Hotel>()
                 .HasOne(h => h.Address);
 
             modelBuilder.Entity<Room>()
                 .HasOne(r => r.Hotel);
-
-            //modelBuilder.Entity<User>()
-            //    .HasOne(u => u.Guest)
-            //    .WithOne(g => g.User)
-            //    .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Guest>()
                 .HasOne(g => g.User)
@@ -57,10 +36,11 @@ namespace HotelBookingSystemAPI.Context
                 .WithOne(u => u.Hotel)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            //modelBuilder.Entity<User>()
-            //    .HasOne(u => u.Hotel)
-            //    .WithOne(h => h.User)
-            //    .OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<Booking>()
+                .HasOne(b => b.Room);
+
+            modelBuilder.Entity<BookingGuest>()
+                .HasOne(bg => bg.Booking);
         }
     }
 }

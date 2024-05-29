@@ -14,7 +14,7 @@ namespace HotelBookingSystemAPI.Models.DTOs.BookingDTOs
         [Required(ErrorMessage = "Room id is required for booking")]
         public int RoomID { get; set; }
 
-        [Required(ErrorMessage = "Cannot book rooms without guests")]
+        //[Required(ErrorMessage = "Cannot book rooms without guests")]
         public IList<BookingGuestInputDTO> Guests { get; set; }
     }
 }

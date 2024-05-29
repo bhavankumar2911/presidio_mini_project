@@ -12,14 +12,14 @@ namespace HotelBookingSystemAPI.Models
         public DateTime CheckoutDateTime { get; set; }
         public double Amount { get; set; }
 
-        public Room? Room { get; set; }
-        [ForeignKey("Room")]
+        public Room Room { get; set; } = null!;
+        //[ForeignKey("Room")]
         public int RoomID { get; set; }
 
-        public Guest? Guest { get; set; }
-        [ForeignKey("Guest")]
+        public Guest Guest { get; set; } = null!;
+        //[ForeignKey("Guest")]
         public int GuestId { get; set; }
 
-        public ICollection<BookingGuest>? Guests { get; set; }
+        //public ICollection<BookingGuest>? Guests { get; set; }
     }
 }

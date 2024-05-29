@@ -115,7 +115,7 @@ namespace HotelBookingSystemAPI.Services
 
             await SaveBookingGuests(bookingInputDTO.Guests, booking.Id);
 
-            return booking;
+            return newBooking;
         }
     }
 }

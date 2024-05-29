@@ -37,7 +37,8 @@ namespace HotelBookingSystemAPI.Services
                 IsAvailable = roomInputDTO.IsAvailable,
                 FloorNumber = roomInputDTO.FloorNumber,
                 PricePerDay = roomInputDTO.PricePerDay,
-                HotelId = hotelId
+                HotelId = hotelId,
+                MaxGuests = roomInputDTO.MaxGuests,
             };
 
             return await _roomRepository.Add(room);
