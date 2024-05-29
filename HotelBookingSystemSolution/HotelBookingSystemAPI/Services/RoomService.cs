@@ -59,6 +59,9 @@ namespace HotelBookingSystemAPI.Services
             if (roomFilterDTO.HotelId != -1)
                 rooms = rooms.Where(room => room.HotelId == roomFilterDTO.HotelId);
 
+            if (roomFilterDTO.MaxGuests != -1)
+                rooms = rooms.Where(room => room.MaxGuests == roomFilterDTO.MaxGuests);
+
             if (!string.IsNullOrEmpty(roomFilterDTO.City))
                 rooms = rooms.Where(room => room.Hotel.Address.City.ToLower() == roomFilterDTO.City.ToLower());
 

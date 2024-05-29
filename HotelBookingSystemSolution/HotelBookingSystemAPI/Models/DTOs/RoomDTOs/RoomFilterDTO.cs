@@ -6,6 +6,7 @@
         public double MaxPrice { get; set; } = -1;
         public RoomSize Size { get; set; } = RoomSize.Default;
         public int HotelId { get; set; } = -1;
+        public int MaxGuests { get; set; } = -1;
         public string City { get; set; } = string.Empty;
         public string State { get; set; } = string.Empty;
     }

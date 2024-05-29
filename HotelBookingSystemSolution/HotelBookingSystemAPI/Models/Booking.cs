@@ -7,7 +7,7 @@ namespace HotelBookingSystemAPI.Models
     {
         [Key]
         public int Id { get; set; }
-        public DateTime DateOfBooking { get; set; }
+        public DateTime DateOfBooking { get; set; } = DateTime.Today;
         public DateTime CheckinDateTime { get; set; }
         public DateTime CheckoutDateTime { get; set; }
         public double Amount { get; set; }

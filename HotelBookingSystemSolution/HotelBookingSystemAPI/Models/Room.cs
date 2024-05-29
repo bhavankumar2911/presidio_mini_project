@@ -15,6 +15,7 @@ namespace HotelBookingSystemAPI.Models
         public double PricePerDay { get; set; }
         public int RoomNumber { get; set; }
         public int FloorNumber { get; set; }
+        public int MaxGuests { get; set; }
         public RoomSize Size { get; set; }
         public bool IsAvailable { get; set; }
 
