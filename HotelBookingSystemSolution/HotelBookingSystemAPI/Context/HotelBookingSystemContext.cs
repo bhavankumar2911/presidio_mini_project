@@ -40,7 +40,10 @@ namespace HotelBookingSystemAPI.Context
                 .HasOne(b => b.Room);
 
             modelBuilder.Entity<BookingGuest>()
-                .HasOne(bg => bg.Booking);
+                .HasOne(bg => bg.Booking)
+                .WithMany(b => b.Guests)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
