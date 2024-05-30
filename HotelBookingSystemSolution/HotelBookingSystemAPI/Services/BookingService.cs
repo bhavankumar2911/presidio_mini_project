@@ -121,10 +121,21 @@ namespace HotelBookingSystemAPI.Services
         public async Task<IEnumerable<Booking>> ViewGuestBookings(int guestId)
         {
             IEnumerable<Booking> bookings = await _bookingRepository.GetAll();
-            bookings = bookings.Where(b => b.GuestId == guestId).Where(b => b.CheckinDateTime > DateTime.Now).OrderByDescending(b => b.DateOfBooking);
+            bookings = bookings.Where(b => b.Guest.Id == guestId).OrderByDescending(b => b.DateOfBooking);
 
             if (bookings.Count() == 0) throw new NoBookingsAvailableException();
 
+            return bookings;
+        }
+
+        public async Task<IEnumerable<Booking>> ViewHotelBookings(int hotelId)
+        {
+            IEnumerable<Booking> bookings = await _bookingRepository.GetAll();
+
+            bookings = bookings.Where(b => b.Room.Hotel.Id == hotelId).OrderByDescending(b => b.DateOfBooking);
+
+            if (bookings.Count() == 0) throw new NoBookingsAvailableException();
+            
             return bookings;
         }
     }

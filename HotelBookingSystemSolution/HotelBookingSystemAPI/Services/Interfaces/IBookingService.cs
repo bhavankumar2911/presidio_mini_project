@@ -8,5 +8,7 @@ namespace HotelBookingSystemAPI.Services.Interfaces
         public Task<Booking> BookRoom(BookingInputDTO bookingInputDTO, int bookingGuestId);
 
         public Task<IEnumerable<Booking>> ViewGuestBookings(int guestId);
+
+        public Task<IEnumerable<Booking>> ViewHotelBookings(int hotelId);
     }
 }

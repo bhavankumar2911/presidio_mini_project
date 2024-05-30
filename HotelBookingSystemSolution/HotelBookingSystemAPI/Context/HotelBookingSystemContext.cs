@@ -41,8 +41,20 @@ namespace HotelBookingSystemAPI.Context
 
             modelBuilder.Entity<BookingGuest>()
                 .HasOne(bg => bg.Booking)
-                .WithMany(b => b.Guests)
-                .IsRequired()
+                .WithMany(b => b.BookingGuests)
+                .HasForeignKey(bg => bg.BookingId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Review>()
+                .HasOne(r => r.Hotel)
+                .WithMany(h => h.Reviews)
+                .HasForeignKey(r => r.HotelId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Review>()
+                .HasOne(r => r.Guest)
+                .WithMany(g => g.Reviews)
+                .HasForeignKey(r => r.GuestId)
                 .OnDelete(DeleteBehavior.Restrict);
         }
     }

@@ -8,11 +8,11 @@ namespace HotelBookingSystemAPI.Models
         [Key]
         public int Id { get; set; }
         public string Content { get; set; } = string.Empty;
-        public Guest? Guest { get; set; }
-        [ForeignKey("Guest")]
+        public Guest Guest { get; set; }
+        //[ForeignKey("Guest")]
         public int GuestId { get; set; }
-        public Hotel? Hotel { get; set; }
-        [ForeignKey("Hotel")]
+        public Hotel Hotel { get; set; }
+        //[ForeignKey("Hotel")]
         public int HotelId { get; set; }
     }
 }

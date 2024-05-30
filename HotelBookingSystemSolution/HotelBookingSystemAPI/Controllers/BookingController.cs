@@ -99,5 +99,30 @@ namespace HotelBookingSystemAPI.Controllers
                 return NotFound(new ErrorResponse(StatusCodes.Status404NotFound, ex.Message));
             }
         }
+
+        [Authorize(Roles = "hotel")]
+        [HttpGet("/hotel/bookings")]
+        [ProducesResponseType(typeof(SuccessResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<SuccessResponse>> GetHotelBookings()
+        {
+            try
+            {
+                int hotelId = -1;
+
+                foreach (var claim in HttpContext.User.Claims)
+                {
+                    if (claim.Type == "id") hotelId = Convert.ToInt32(claim.Value);
+                }
+
+                IEnumerable<Booking> bookings = await _bookingService.ViewHotelBookings(hotelId);
+
+                return Ok(new SuccessResponse(bookings));
+            }
+            catch (NoBookingsAvailableException ex)
+            {
+                return NotFound(new ErrorResponse(StatusCodes.Status404NotFound, ex.Message));
+            }
+        }
     }
 }
