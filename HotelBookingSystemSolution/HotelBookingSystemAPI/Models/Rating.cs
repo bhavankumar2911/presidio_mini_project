@@ -7,10 +7,10 @@ namespace HotelBookingSystemAPI.Models
     {
         [Key]
         public int Id { get; set; }
-        public float StarRating { get; set; }
+        public int StarRating { get; set; }
 
-        public Hotel? Hotel { get; set; }
-        [ForeignKey("Hotel")]
+        //public Hotel? Hotel { get; set; }
+        //[ForeignKey("Hotel")]
         public int HotelId { get; set; }
         public Guest? Guest { get; set; }
         [ForeignKey("Guest")]

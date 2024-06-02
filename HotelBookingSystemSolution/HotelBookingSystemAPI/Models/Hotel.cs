@@ -11,6 +11,7 @@ namespace HotelBookingSystemAPI.Models
         public bool IsApproved { get; set; } = false;
         public string Phone { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
+        public float StarRating { get; set; } = 0;
 
         public Address Address { get; set; } = null!;
         public int AddressId { get; set; }
@@ -21,6 +22,6 @@ namespace HotelBookingSystemAPI.Models
 
         public ICollection<Review> Reviews { get; set; }
 
-        public ICollection<Rating>? Ratings { get; set; }
+        public ICollection<Rating> Ratings { get; set; }
     }
 }

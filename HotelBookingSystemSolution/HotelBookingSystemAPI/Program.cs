@@ -55,6 +55,7 @@ namespace HotelBookingSystemAPI
             builder.Services.AddScoped<IRepository<int, Booking>, BookingRepository>();
             builder.Services.AddScoped<IRepository<int, BookingGuest>, BookingGuestRepository>();
             builder.Services.AddScoped<IRepository<int, Review>, ReviewRepository>();
+            builder.Services.AddScoped<IRepository<int, Rating>, RatingRepository>();
             #endregion
 
             #region services
@@ -67,6 +68,7 @@ namespace HotelBookingSystemAPI
             builder.Services.AddScoped<IRoomService, RoomService>();
             builder.Services.AddScoped<IBookingService, BookingService>();
             builder.Services.AddScoped<IReviewService, ReviewService>();
+            builder.Services.AddScoped<IRatingService, RatingService>();
             #endregion
 
             var app = builder.Build();

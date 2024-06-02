@@ -39,11 +39,11 @@ namespace HotelBookingSystemAPI.Context
             modelBuilder.Entity<Booking>()
                 .HasOne(b => b.Room);
 
-            modelBuilder.Entity<BookingGuest>()
-                .HasOne(bg => bg.Booking)
-                .WithMany(b => b.BookingGuests)
-                .HasForeignKey(bg => bg.BookingId)
-                .OnDelete(DeleteBehavior.Restrict);
+            //modelBuilder.Entity<BookingGuest>()
+            //    .HasOne(bg => bg.Booking)
+            //    .WithMany(b => b.BookingGuests)
+            //    .HasForeignKey(bg => bg.BookingId)
+            //    .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Review>()
                 .HasOne(r => r.Hotel)

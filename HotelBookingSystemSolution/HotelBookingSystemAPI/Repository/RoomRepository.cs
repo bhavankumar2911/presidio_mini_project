@@ -38,7 +38,28 @@ namespace HotelBookingSystemAPI.Repository
 
         async public Task<IEnumerable<Room>> GetAll()
         {
-            var rooms = await _context.Rooms.Include(r => r.Hotel).ThenInclude(h => h.Address).ToListAsync();
+            //var rooms = await _context.Rooms.Include(r => r.Hotel).ThenInclude(h => h.Address).ToListAsync();
+
+            var rooms = _context.Rooms.Select(r => new Room
+            {
+                Id = r.Id,
+                PricePerDay = r.PricePerDay,
+                RoomNumber = r.RoomNumber,
+                FloorNumber = r.FloorNumber,
+                MaxGuests = r.MaxGuests,
+                Size = r.Size,
+                IsAvailable = r.IsAvailable,
+                HotelId = r.HotelId,
+                Hotel = new Hotel
+                {
+                    Name = r.Hotel.Name,
+                    Phone = r.Hotel.Phone,
+                    Description = r.Hotel.Description,
+                    Address = r.Hotel.Address,
+                    Reviews = r.Hotel.Reviews,
+                    StarRating = r.Hotel.StarRating,
+                }
+            });
 
             //if (rooms.Count == 0) throw new NoRoomsFoundException();
 

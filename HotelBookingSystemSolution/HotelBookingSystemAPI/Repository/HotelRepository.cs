@@ -38,7 +38,11 @@ namespace HotelBookingSystemAPI.Repository
 
         async public Task<IEnumerable<Hotel>> GetAll()
         {
-            var hotels = await _context.Hotels.ToListAsync();
+            var hotels = await _context.Hotels.Select(h => new Hotel
+            {
+                Ratings = h.Ratings,
+                StarRating = h.StarRating,
+            }).ToListAsync();
 
             //if (hotels.Count == 0) throw new NoHotelsFoundException();
 

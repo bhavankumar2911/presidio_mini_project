@@ -11,7 +11,7 @@ namespace HotelBookingSystemAPI.Models
         public string Gender { get; set; } = string.Empty;
         public double Age { get; set; }
 
-        public Booking Booking { get; set; } = null!;
+        //public Booking Booking { get; set; } = null!;
         //[ForeignKey("Booking")]
         public int BookingId { get; set; }
     }

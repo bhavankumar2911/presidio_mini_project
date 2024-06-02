@@ -41,7 +41,13 @@ namespace HotelBookingSystemAPI.Repository
             //var bookings = await _context.Bookings.ToListAsync();
             var bookings = _context.Bookings.Select(b => new Booking
             {
-                BookingGuests = b.BookingGuests,
+                CheckinDateTime = b.CheckinDateTime,
+                CheckoutDateTime = b.CheckoutDateTime,
+                BookingGuests = (ICollection<BookingGuest>)b.BookingGuests.Select(bg => new BookingGuest { 
+                    Name = bg.Name,
+                    Age = bg.Age,
+                    Gender = bg.Gender,
+                }),
                 Guest = b.Guest,
                 Room = new Room
                 {
