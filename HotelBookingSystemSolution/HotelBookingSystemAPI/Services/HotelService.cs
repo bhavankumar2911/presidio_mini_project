@@ -182,6 +182,7 @@ namespace HotelBookingSystemAPI.Services
             HMACSHA512 hMACSHA512 = new HMACSHA512(user.PasswordHashKey);
             byte[] hashedPassword = _authenticationService.GetHashedPassword(hMACSHA512, loginHotelInputDTO.PlainTextPassword);
 
+
             if (_authenticationService.ComparePassword(hashedPassword, user.HashedPassword))
             {
                 Hotel hotel = await GetHotelFromUser(user.Id);
@@ -194,7 +195,7 @@ namespace HotelBookingSystemAPI.Services
                 return CreateHotelLoginReturn(user, hotel, address, _tokenService.GenerateToken(hotel.Id, user.Role));
             }
 
-            throw new WrongGuestLoginCredentialsException();
+            throw new WrongHotelLoginCredentialsException();
         }
 
         public async Task<IEnumerable<Hotel>> ListAllHotels()

@@ -40,8 +40,15 @@ namespace HotelBookingSystemAPI.Repository
         {
             var hotels = await _context.Hotels.Select(h => new Hotel
             {
+                Name = h.Name,
+                Description = h.Description,
+                Id = h.Id,
+                Phone = h.Phone,
                 Ratings = h.Ratings,
                 StarRating = h.StarRating,
+                UserId = h.UserId,
+                IsApproved = h.IsApproved,
+                AddressId = h.AddressId,
             }).ToListAsync();
 
             //if (hotels.Count == 0) throw new NoHotelsFoundException();

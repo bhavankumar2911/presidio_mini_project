@@ -43,6 +43,7 @@ namespace HotelBookingSystemAPI.Repository
             {
                 CheckinDateTime = b.CheckinDateTime,
                 CheckoutDateTime = b.CheckoutDateTime,
+                Amount = b.Amount,
                 BookingGuests = (ICollection<BookingGuest>)b.BookingGuests.Select(bg => new BookingGuest { 
                     Name = bg.Name,
                     Age = bg.Age,

@@ -33,32 +33,8 @@ namespace HotelBookingSystemAPI.Services
 
             if (bookings.Count() > 0)
             {
-                //bookings = bookings.OrderBy(b => b.CheckoutDateTime).ToList();
-
-                //Booking latestBooking = bookings.Last();
-
-                //Console.WriteLine("\ndate time: \n" + bookingInputDTO.CheckinDateTime);
-                //Console.WriteLine ("\ndate time: \n" + latestBooking.CheckoutDateTime);
-
-                //if (bookingInputDTO.CheckinDateTime < latestBooking.CheckoutDateTime) throw new RoomAlreadyBookedException();
-
-                //DateTime.TryParse(bookingInputDTO.CheckinDateTime.ToString(), out DateTime newIn);
-                //DateTime.TryParse(bookingInputDTO.CheckoutDateTime.ToString(), out DateTime newOut);
                 foreach (var booking in bookings)
                 {
-                    //DateTime.TryParse(booking.CheckinDateTime.ToString(), out DateTime oldIn);
-                    //DateTime.TryParse(booking.CheckoutDateTime.ToString(), out DateTime oldOut);
-
-                    //if ((newOut > oldIn && newOut < oldOut) ||
-                    //    (newIn > oldIn && newIn < oldOut) ||
-                    //    (newIn < oldIn && newOut > oldOut) ||
-                    //    (newIn == oldIn && newOut == oldOut) ||
-                    //    (newIn < oldIn && newOut == oldOut) ||
-                    //    (newIn == oldIn && newOut > oldOut))
-                    //        {
-                    //    throw new RoomAlreadyBookedException();
-                    //        }
-
                     if ((bookingInputDTO.CheckoutDateTime > booking.CheckinDateTime &&
                         bookingInputDTO.CheckoutDateTime < booking.CheckoutDateTime) ||
                         (bookingInputDTO.CheckinDateTime > booking.CheckinDateTime &&

@@ -49,6 +49,22 @@ namespace APITest
                         Role = "guest",
                         PasswordHashKey = _authenticationService.GetHashKey(_hmacSHA512),
                         HashedPassword = _authenticationService.GetHashedPassword(_hmacSHA512, "pass"),
+                    },
+                    new User
+                    {
+                        Id = 3,
+                        Email = "hyatt@gmail.com",
+                        Role = "hotel",
+                        PasswordHashKey = _authenticationService.GetHashKey(_hmacSHA512),
+                        HashedPassword = _authenticationService.GetHashedPassword(_hmacSHA512, "pass"),
+                    },
+                    new User
+                    {
+                        Id = 4,
+                        Email = "sb@gmail.com",
+                        Role = "hotel",
+                        PasswordHashKey = _authenticationService.GetHashKey(_hmacSHA512),
+                        HashedPassword = _authenticationService.GetHashedPassword(_hmacSHA512, "pass"),
                     }
                 );
 
@@ -73,6 +89,52 @@ namespace APITest
                         Gender = "female",
                         IsBlocked = true,
                         UserId = 2,
+                    }
+                );
+
+            modelBuilder.Entity<Hotel>()
+                .HasData(
+                    new Hotel
+                    {
+                        Id = 1,
+                        Name = "hyatt",
+                        IsApproved = true,
+                        Phone = "0987654321",
+                        Description = "good hotel",
+                        UserId = 3,
+                        AddressId = 1,
+                    },
+                    new Hotel
+                    {
+                        Id = 2,
+                        Name = "SB hotel",
+                        IsApproved = false,
+                        Phone = "0987654323",
+                        Description = "great hotel",
+                        UserId = 4,
+                        AddressId = 2,
+                    }
+                );
+
+            modelBuilder.Entity<Address>()
+                .HasData(
+                    new Address
+                    {
+                        Id = 1,
+                        BuildingNoAndName = "2",
+                        StreetNoAndName = "3 some street",
+                        City = "some city",
+                        State = "some state",
+                        Pincode = "987654"
+                    },
+                    new Address
+                    {
+                        Id = 2,
+                        BuildingNoAndName = "3",
+                        StreetNoAndName = "3 some street",
+                        City = "some city",
+                        State = "some state",
+                        Pincode = "987654"
                     }
                 );
         }

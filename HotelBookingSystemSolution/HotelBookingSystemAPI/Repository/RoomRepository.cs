@@ -58,6 +58,7 @@ namespace HotelBookingSystemAPI.Repository
                     Address = r.Hotel.Address,
                     Reviews = r.Hotel.Reviews,
                     StarRating = r.Hotel.StarRating,
+                    IsApproved = r.Hotel.IsApproved,
                 }
             });
 

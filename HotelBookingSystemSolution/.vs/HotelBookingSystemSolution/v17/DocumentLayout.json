@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\VC\\Documents\\Training\\MiniProject\\HotelBookingSystemSolution\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{436ABD46-3C6A-4FB2-834C-009B2E5C9056}|APITest\\APITest.csproj|c:\\users\\vc\\documents\\training\\miniproject\\hotelbookingsystemsolution\\apitest\\guestservicetest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{436ABD46-3C6A-4FB2-834C-009B2E5C9056}|APITest\\APITest.csproj|solutionrelative:apitest\\guestservicetest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{436ABD46-3C6A-4FB2-834C-009B2E5C9056}|APITest\\APITest.csproj|c:\\users\\vc\\documents\\training\\miniproject\\hotelbookingsystemsolution\\apitest\\hotelservicetest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{436ABD46-3C6A-4FB2-834C-009B2E5C9056}|APITest\\APITest.csproj|solutionrelative:apitest\\hotelservicetest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{436ABD46-3C6A-4FB2-834C-009B2E5C9056}|APITest\\APITest.csproj|c:\\users\\vc\\documents\\training\\miniproject\\hotelbookingsystemsolution\\apitest\\testconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{436ABD46-3C6A-4FB2-834C-009B2E5C9056}|APITest\\APITest.csproj|solutionrelative:apitest\\testconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4BA8D37E-E30D-4C2D-B6A0-0A95FAFECD38}|HotelBookingSystemAPI\\HotelBookingSystemAPI.csproj|c:\\users\\vc\\documents\\training\\miniproject\\hotelbookingsystemsolution\\hotelbookingsystemapi\\services\\hotelservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4BA8D37E-E30D-4C2D-B6A0-0A95FAFECD38}|HotelBookingSystemAPI\\HotelBookingSystemAPI.csproj|solutionrelative:hotelbookingsystemapi\\services\\hotelservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{436ABD46-3C6A-4FB2-834C-009B2E5C9056}|APITest\\APITest.csproj|c:\\users\\vc\\documents\\training\\miniproject\\hotelbookingsystemsolution\\apitest\\testdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -22,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
@@ -32,35 +32,35 @@
               "RelativeDocumentMoniker": "APITest\\TestDBContext.cs",
               "ToolTip": "C:\\Users\\VC\\Documents\\Training\\MiniProject\\HotelBookingSystemSolution\\APITest\\TestDBContext.cs",
               "RelativeToolTip": "APITest\\TestDBContext.cs",
-              "ViewState": "AQIAADwAAAAAAAAAAAAcwEUAAAAlAAAA",
+              "ViewState": "AQIAAF8AAAAAAAAAAAA0wAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-04T05:26:21.054Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "TestConfiguration.cs",
-              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Training\\MiniProject\\HotelBookingSystemSolution\\APITest\\TestConfiguration.cs",
-              "RelativeDocumentMoniker": "APITest\\TestConfiguration.cs",
-              "ToolTip": "C:\\Users\\VC\\Documents\\Training\\MiniProject\\HotelBookingSystemSolution\\APITest\\TestConfiguration.cs",
-              "RelativeToolTip": "APITest\\TestConfiguration.cs",
-              "ViewState": "AQIAAAwAAAAAAAAAAAAAAAwAAAAkAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-03T14:53:58.58Z",
+              "WhenOpened": "2024-06-06T04:34:34.726Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "GuestServiceTest.cs",
-              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Training\\MiniProject\\HotelBookingSystemSolution\\APITest\\GuestServiceTest.cs",
-              "RelativeDocumentMoniker": "APITest\\GuestServiceTest.cs",
-              "ToolTip": "C:\\Users\\VC\\Documents\\Training\\MiniProject\\HotelBookingSystemSolution\\APITest\\GuestServiceTest.cs",
-              "RelativeToolTip": "APITest\\GuestServiceTest.cs",
-              "ViewState": "AQIAAHYAAAAAAAAAAAA2wKgAAAAJAAAA",
+              "Title": "HotelServiceTest.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Training\\MiniProject\\HotelBookingSystemSolution\\APITest\\HotelServiceTest.cs",
+              "RelativeDocumentMoniker": "APITest\\HotelServiceTest.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Training\\MiniProject\\HotelBookingSystemSolution\\APITest\\HotelServiceTest.cs",
+              "RelativeToolTip": "APITest\\HotelServiceTest.cs",
+              "ViewState": "AQIAAOIAAAAAAAAAAAAswOcAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-03T14:21:31.146Z",
+              "WhenOpened": "2024-06-06T04:14:14.518Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "HotelService.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Training\\MiniProject\\HotelBookingSystemSolution\\HotelBookingSystemAPI\\Services\\HotelService.cs",
+              "RelativeDocumentMoniker": "HotelBookingSystemAPI\\Services\\HotelService.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Training\\MiniProject\\HotelBookingSystemSolution\\HotelBookingSystemAPI\\Services\\HotelService.cs",
+              "RelativeToolTip": "HotelBookingSystemAPI\\Services\\HotelService.cs",
+              "ViewState": "AQIAAOQAAAAAAAAAAAAcwOwAAABVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-06T04:14:17.634Z",
               "EditorCaption": ""
             }
           ]
