@@ -2,6 +2,10 @@ body {
   background-color: #eee;
 }
 
+.table-container {
+  overflow-x: scroll;
+}
+
 @media (min-width: 768px) {
   .form-card {
     padding: 2rem;
