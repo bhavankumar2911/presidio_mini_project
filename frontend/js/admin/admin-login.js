@@ -1,12 +1,23 @@
 import { login } from "../lib.js";
 
-$("#error-message").hide();
+const d = document;
+const errorMessage = d.getElementById("error-message");
+const form = d.getElementById("form");
+const email = d.getElementById("email");
+const password = d.getElementById("password");
 
-$("#form").submit((e) =>
-  login(
-    e,
-    "http://localhost:5229/admin/login",
-    "admin_token",
-    "/admin-dashboard.html"
-  )
-);
+const handleAdminLogin = async (event) => {
+  const loginConfig = {
+    event,
+    email: email.value,
+    password: password.value,
+    errorMessage,
+    url: "http://localhost:5229/admin/login",
+    tokenName: "admin_token",
+    redirectUrl: "/admin-dashboard.html",
+  };
+
+  login(loginConfig);
+};
+
+form.addEventListener("submit", handleAdminLogin);
