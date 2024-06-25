@@ -19,7 +19,14 @@
           <div class="card form-card">
             <div class="card-body">
               <h2 class="card-title mb-3 text-center">Admin Login</h2>
-              <form>
+              <!-- error message -->
+              <div
+                class="alert alert-warning"
+                role="alert"
+                id="error-message"
+              ></div>
+
+              <form id="form">
                 <div class="mb-3">
                   <label for="email" class="form-label">Email address</label>
                   <input
@@ -27,6 +34,8 @@
                     class="form-control"
                     id="email"
                     name="email"
+                    value="admin@gmail.com"
+                    required
                   />
                 </div>
 
@@ -37,6 +46,8 @@
                     class="form-control"
                     id="password"
                     name="password"
+                    value="pass"
+                    required
                   />
                 </div>
 
@@ -49,5 +60,12 @@
         </div>
       </div>
     </div>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" src="./js/lib.js"></script>
+    <script type="module" src="./js/admin/admin-login.js"></script>
   </body>
 </html>

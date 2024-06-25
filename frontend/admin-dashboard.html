@@ -14,7 +14,20 @@
   </head>
   <body>
     <div class="container">
-      <div class="row">
+      <!-- loader -->
+      <div
+        class="d-flex align-items-center justify-content-center min-vh-100"
+        id="loader"
+      >
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+
+      <!-- confirm modal -->
+      <!-- <div class="card">Do you really want to block the hotel?</div> -->
+
+      <div id="content" class="row d-none">
         <div class="col">
           <div class="card">
             <div class="card-body">
@@ -33,8 +46,8 @@
                       <th scope="col">Status</th>
                     </tr>
                   </thead>
-                  <tbody>
-                    <tr>
+                  <tbody id="hotel-list">
+                    <!-- <tr>
                       <th scope="row">1</th>
                       <td>Hyatt</td>
                       <td>hyatt@gmail.com</td>
@@ -134,7 +147,7 @@
                           >Waiting Approval</span
                         >
                       </td>
-                    </tr>
+                    </tr> -->
                   </tbody>
                 </table>
               </div>
@@ -148,5 +161,12 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" src="./js/lib.js"></script>
+    <script type="module" src="./js/admin/admin-dashboard.js"></script>
   </body>
 </html>

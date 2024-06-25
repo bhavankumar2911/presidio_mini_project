@@ -5,11 +5,13 @@ using Microsoft.AspNetCore.Mvc;
 using HotelBookingSystemAPI.Exceptions;
 using HotelBookingSystemAPI.Exceptions.Guest;
 using HotelBookingSystemAPI.Services.Interfaces;
+using Microsoft.AspNetCore.Cors;
 
 namespace HotelBookingSystemAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("DefaultPolicy")]
     public class GuestController : ControllerBase
     {
         private readonly IGuestService _guestService;

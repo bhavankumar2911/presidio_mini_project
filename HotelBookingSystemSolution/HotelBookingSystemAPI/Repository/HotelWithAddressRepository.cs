@@ -17,7 +17,29 @@ namespace HotelBookingSystemAPI.Repository
 
         public async Task<IEnumerable<Hotel>> GetAllWithAddress()
         {
-            var hotels = await _context.Hotels.Include(h => h.Address).ToListAsync();
+            //var hotels = await _context.Hotels.Include(h => h.Address).ToListAsync();
+
+            var hotels = await _context.Hotels.Select(h => new Hotel
+            {
+                Id = h.Id,
+                Name = h.Name,
+                IsApproved = h.IsApproved,
+                Phone = h.Phone,
+                StarRating = h.StarRating,
+                Description = h.Description,
+                Address = new Address
+                {
+                    BuildingNoAndName = h.Address.BuildingNoAndName,
+                    StreetNoAndName = h.Address.StreetNoAndName,
+                    City = h.Address.City,
+                    State = h.Address.State,
+                    Pincode = h.Address.Pincode,
+                },
+                User= new User
+                {
+                    Email = h.User.Email
+                }
+            }).ToListAsync();
 
             //if (hotels.Count == 0) throw new NoHotelsFoundException();
 

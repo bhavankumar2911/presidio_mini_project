@@ -71,6 +71,22 @@ namespace HotelBookingSystemAPI
             builder.Services.AddScoped<IRatingService, RatingService>();
             #endregion
 
+            #region CORS
+            builder.Services.AddCors(opts =>
+            {
+                opts.AddPolicy("DefaultPolicy", options =>
+                {
+                    //options.AllowAnyHeader().AllowAnyMethod().allo
+                    //options.WithOrigins("http://127.0.0.1:5500").AllowAnyMethod().AllowAnyHeader();
+                    options
+                        .WithOrigins("http://127.0.0.1:5500")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .AllowCredentials();
+                });
+            });
+            #endregion
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -80,6 +96,7 @@ namespace HotelBookingSystemAPI
                 app.UseSwaggerUI();
             }
 
+            app.UseCors("DefaultPolicy");
             app.UseAuthentication();
             app.UseAuthorization();
 

@@ -9,9 +9,11 @@ using HotelBookingSystemAPI.Services;
 using HotelBookingSystemAPI.Models.DTOs.Hotel;
 using Microsoft.AspNetCore.Authorization;
 using HotelBookingSystemAPI.Models;
+using Microsoft.AspNetCore.Cors;
 
 namespace HotelBookingSystemAPI.Controllers
 {
+    [EnableCors("DefaultPolicy")]
     [Route("api/[controller]")]
     [ApiController]
     public class HotelController : ControllerBase

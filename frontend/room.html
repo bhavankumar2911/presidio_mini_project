@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="./styles/bootstrap.css" />
+    <link rel="stylesheet" href="./styles/main.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h2>Lemon Tree</h2>
+      <div class="row g-3">
+        <div class="col col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><b>Price</b></td>
+                    <td>Rs. 15,000 (per day)</td>
+                  </tr>
+                  <tr>
+                    <td><b>Maximum Guests</b></td>
+                    <td>4</td>
+                  </tr>
+                  <tr>
+                    <td><b>Room Size</b></td>
+                    <td>Large</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h3 class="card-title">Address</h3>
+              <p>
+                72, Sardar Patel Rd, Venkta Puram, Guindy, Chennai, Tamil Nadu,
+                600032.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mt-3">
+        <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <h3 class="card-title">Reviews</h3>
+            <button
+              class="btn btn-primary"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseExample"
+              aria-expanded="false"
+              aria-controls="collapseExample"
+            >
+              View
+            </button>
+          </div>
+          <div class="collapse" id="collapseExample">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Exercitationem, molestiae?
+                </p>
+                <p class="badge text-bg-primary"><em>Jimmy McGill</em></p>
+              </li>
+
+              <li class="list-group-item">
+                <p>
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                  Rerum animi beatae aliquid velit hic iusto veniam obcaecati.
+                  Eos, voluptatem maiores.
+                </p>
+                <p class="badge text-bg-primary"><em>Chuck McGill</em></p>
+              </li>
+
+              <li class="list-group-item">
+                <p>
+                  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iste
+                  modi unde magni ducimus, vel eaque amet tenetur cupiditate a!
+                  Eligendi perspiciatis eum nihil earum praesentium dolor libero
+                  exercitationem vitae assumenda quidem, maxime illo commodi
+                  recusandae, eos ex voluptatibus fuga quasi.
+                </p>
+                <p class="badge text-bg-primary"><em>Kim</em></p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <form action="">
+                <div class="mb-3">
+                  <label for="checkinDateTime" class="form-label"
+                    >Checkin DateTime</label
+                  >
+                  <input
+                    type="datetime-local"
+                    class="form-control"
+                    id="checkinDateTime"
+                    name="checkinDateTime"
+                  />
+                </div>
+
+                <div class="mb-3">
+                  <label for="checkoutDateTime" class="form-label"
+                    >Checkout DateTime</label
+                  >
+                  <input
+                    type="datetime-local"
+                    class="form-control"
+                    id="checkoutDateTime"
+                    name="checkoutDateTime"
+                  />
+                </div>
+
+                <div class="d-flex justify-content-between">
+                  <h3>Guests</h3>
+                  <button class="btn btn-primary">Add one more</button>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">
+                    <div class="mb-2">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="name"
+                        name="name"
+                        placeholder="Guest name"
+                      />
+                    </div>
+
+                    <div class="row g-2">
+                      <div class="mb-3 col-12 col-sm-6">
+                        <select
+                          class="form-select"
+                          aria-label="Default select example"
+                          name="gender"
+                        >
+                          <option selected>Select Gender</option>
+                          <option value="male">Male</option>
+                          <option value="female">Female</option>
+                        </select>
+                      </div>
+
+                      <div class="mb-3 col-12 col-sm-6">
+                        <input
+                          type="number"
+                          class="form-control"
+                          id="age"
+                          name="age"
+                          placeholder="Guest age"
+                        />
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">A second item</li>
+                </ul>
+              </form>
+            </div>
+            <div class="col-12 col-md-6">c</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./js/bootstrap.bundle.js"></script>
+  </body>
+</html>
