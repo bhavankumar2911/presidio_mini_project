@@ -1,3 +1,5 @@
+export const redirect = (url) => (window.location.href = url);
+
 export async function login(e, url, tokenName, redirectUrl) {
   e.preventDefault();
 

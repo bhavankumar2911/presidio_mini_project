@@ -19,7 +19,13 @@
           <div class="card form-card">
             <div class="card-body">
               <h2 class="card-title mb-3 text-center">Guest Register</h2>
-              <form>
+              <form id="form">
+                <!-- error message -->
+                <div
+                  class="alert alert-warning d-none"
+                  role="alert"
+                  id="error-message"
+                ></div>
                 <div class="mb-3">
                   <label for="email" class="form-label">Email address</label>
                   <input
@@ -27,6 +33,8 @@
                     class="form-control"
                     id="email"
                     name="email"
+                    value="jake@gmail.com"
+                    required
                   />
                 </div>
 
@@ -38,6 +46,8 @@
                       class="form-control"
                       id="name"
                       name="name"
+                      value="Jake"
+                      required
                     />
                   </div>
 
@@ -48,6 +58,8 @@
                       class="form-control"
                       id="phone"
                       name="phone"
+                      value="+1 8989898989"
+                      required
                     />
                   </div>
                 </div>
@@ -60,6 +72,8 @@
                       class="form-control"
                       id="age"
                       name="age"
+                      value="27"
+                      required
                     />
                   </div>
 
@@ -69,9 +83,11 @@
                       class="form-select"
                       aria-label="Default select example"
                       name="gender"
+                      id="gender"
+                      required
                     >
-                      <option selected>Select</option>
-                      <option value="male">Male</option>
+                      <option selected></option>
+                      <option value="male" selected>Male</option>
                       <option value="female">Female</option>
                     </select>
                   </div>
@@ -85,6 +101,8 @@
                       class="form-control"
                       id="password"
                       name="password"
+                      value="pass"
+                      required
                     />
                   </div>
 
@@ -97,6 +115,8 @@
                       class="form-control"
                       id="password2"
                       name="password2"
+                      value="pass"
+                      required
                     />
                   </div>
                 </div>
@@ -116,5 +136,6 @@
         </div>
       </div>
     </div>
+    <script type="module" src="./js/guest/guest-register.js"></script>
   </body>
 </html>
