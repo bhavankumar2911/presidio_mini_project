@@ -1,4 +1,5 @@
 ﻿using HotelBookingSystemAPI.Exceptions;
+using HotelBookingSystemAPI.Exceptions.Address;
 using HotelBookingSystemAPI.Exceptions.Guest;
 using HotelBookingSystemAPI.Exceptions.Hotel;
 using HotelBookingSystemAPI.Models;
@@ -118,14 +119,22 @@ namespace HotelBookingSystemAPI.Services
 
             User newUser = await _userRepository.Add(user);
 
-            // insert hotel
-            Address address = await _addressService.SaveHotelAddress(registerHotelInputDTO.Address);
+            try
+            {
+                // insert address
+                Address address = await _addressService.SaveHotelAddress(registerHotelInputDTO.Address);
 
-            // insert hotel
-            Hotel hotel = PrepareHotelForRegister(registerHotelInputDTO, newUser.Id, address.Id);
-            Hotel newHotel = await _hotelRepository.Add(hotel);
+                // insert hotel
+                Hotel hotel = PrepareHotelForRegister(registerHotelInputDTO, newUser.Id, address.Id);
+                Hotel newHotel = await _hotelRepository.Add(hotel);
 
-            return CreateHotelRegisterReturn(newUser, newHotel, address);
+                return CreateHotelRegisterReturn(newUser, newHotel, address);
+            } catch (AddressAlreadyExistsException ex)
+            {
+                // delete inserted user
+                await _userRepository.Delete(newUser.Id);
+                throw ex;
+            }
         }
 
         private async Task<Hotel> GetHotelFromUser(int userId)
@@ -194,7 +203,7 @@ namespace HotelBookingSystemAPI.Services
                 return CreateHotelLoginReturn(user, hotel, address, _tokenService.GenerateToken(hotel.Id, user.Role));
             }
 
-            throw new WrongGuestLoginCredentialsException();
+            throw new WrongHotelLoginCredentialsException();
         }
 
         public async Task<IEnumerable<Hotel>> ListAllHotels()

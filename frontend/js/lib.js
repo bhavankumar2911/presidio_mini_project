@@ -36,7 +36,5 @@ export const login = async (loginConfig) => {
 export function checkAuthorization(userRole, redirectUrl) {
   const token = localStorage.getItem(`${userRole}_token`);
 
-  console.log("token", token);
-
   if (!token) return (window.location.href = redirectUrl);
 }

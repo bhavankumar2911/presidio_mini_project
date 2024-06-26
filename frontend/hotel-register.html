@@ -19,7 +19,13 @@
           <div class="card form-card">
             <div class="card-body">
               <h2 class="card-title mb-3 text-center">Hotel Register</h2>
-              <form>
+              <form id="form">
+                <!-- error message -->
+                <div
+                  class="alert alert-warning d-none"
+                  role="alert"
+                  id="error-message"
+                ></div>
                 <div class="mb-3">
                   <label for="email" class="form-label">Email address</label>
                   <input
@@ -27,6 +33,8 @@
                     class="form-control"
                     id="email"
                     name="email"
+                    value="cresent@gmail.com"
+                    required
                   />
                 </div>
 
@@ -38,6 +46,8 @@
                       class="form-control"
                       id="name"
                       name="name"
+                      value="Cresent"
+                      required
                     />
                   </div>
 
@@ -48,6 +58,8 @@
                       class="form-control"
                       id="phone"
                       name="phone"
+                      value="+91 9823982398"
+                      required
                     />
                   </div>
                 </div>
@@ -61,7 +73,9 @@
                     id="description"
                     name="description"
                     rows="3"
-                  ></textarea>
+                  >
+Experience the epitome of urban chic at Hotel Cresent. Centrally located, our boutique hotel offers stylish rooms with modern amenities. Enjoy gourmet dining, unwind at the rooftop bar with panoramic city views, or relax in the spa. Perfect for business and leisure travelers seeking sophistication and comfort in every stay.</textarea
+                  >
                 </div>
 
                 <div class="row">
@@ -75,6 +89,8 @@
                       id="buildingNoAndName"
                       name="buildingNoAndName"
                       placeholder="Building number and name"
+                      value="365"
+                      required
                     />
                   </div>
 
@@ -88,6 +104,8 @@
                       id="streetNoAndName"
                       name="streetNoAndName"
                       placeholder="Street number and name"
+                      value="2nd Main Rd, Wallace Garden"
+                      required
                     />
                   </div>
                 </div>
@@ -100,6 +118,8 @@
                       class="form-control"
                       id="city"
                       name="city"
+                      value="Chennai"
+                      required
                     />
                   </div>
 
@@ -110,6 +130,8 @@
                       class="form-control"
                       id="state"
                       name="state"
+                      value="Tamil Nadu"
+                      required
                     />
                   </div>
 
@@ -120,6 +142,8 @@
                       class="form-control"
                       id="pincode"
                       name="pincode"
+                      value="600018"
+                      required
                     />
                   </div>
                 </div>
@@ -132,6 +156,8 @@
                       class="form-control"
                       id="password"
                       name="password"
+                      value="pass"
+                      required
                     />
                   </div>
 
@@ -144,6 +170,8 @@
                       class="form-control"
                       id="password2"
                       name="password2"
+                      value="pass"
+                      required
                     />
                   </div>
                 </div>
@@ -163,5 +191,6 @@
         </div>
       </div>
     </div>
+    <script type="module" src="./js/hotel/hotel-register.js"></script>
   </body>
 </html>

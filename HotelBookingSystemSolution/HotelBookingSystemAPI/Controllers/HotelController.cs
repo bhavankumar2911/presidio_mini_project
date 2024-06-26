@@ -10,6 +10,7 @@ using HotelBookingSystemAPI.Models.DTOs.Hotel;
 using Microsoft.AspNetCore.Authorization;
 using HotelBookingSystemAPI.Models;
 using Microsoft.AspNetCore.Cors;
+using HotelBookingSystemAPI.Exceptions.Address;
 
 namespace HotelBookingSystemAPI.Controllers
 {
@@ -43,6 +44,10 @@ namespace HotelBookingSystemAPI.Controllers
             {
                 return Conflict(new ErrorResponse(409, ex.Message));
             }
+            catch (AddressAlreadyExistsException ex)
+            {
+                return Conflict(new ErrorResponse(409, ex.Message));
+            }
         }
 
         [HttpPost("/hotel/login")]
@@ -56,7 +61,7 @@ namespace HotelBookingSystemAPI.Controllers
 
                 return Ok(loginHotelReturnDTO);
             }
-            catch (WrongGuestLoginCredentialsException ex)
+            catch (WrongHotelLoginCredentialsException ex)
             {
                 return Unauthorized(new ErrorResponse(401, ex.Message));
             }
