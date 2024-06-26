@@ -36,7 +36,7 @@
               "RelativeDocumentMoniker": "HotelBookingSystemAPI\\Repository\\HotelRepository.cs",
               "ToolTip": "C:\\Users\\VC\\Documents\\Training\\MiniProject\\HotelBookingSystemSolution\\HotelBookingSystemAPI\\Repository\\HotelRepository.cs",
               "RelativeToolTip": "HotelBookingSystemAPI\\Repository\\HotelRepository.cs",
-              "ViewState": "AQIAACYAAAAAAAAAAAAxwDIAAAAoAAAA",
+              "ViewState": "AQIAABAAAAAAAAAAAAA2wDIAAAAoAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-26T04:39:40.981Z",
               "EditorCaption": ""
@@ -51,8 +51,7 @@
               "RelativeToolTip": "HotelBookingSystemAPI\\Controllers\\HotelController.cs",
               "ViewState": "AQIAADEAAAAAAAAAAIA0wEcAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-25T09:49:32.312Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-25T09:49:32.312Z"
             },
             {
               "$type": "Document",
@@ -64,8 +63,7 @@
               "RelativeToolTip": "HotelBookingSystemAPI\\Services\\AddressService.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAACYAAAA3AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-25T09:48:41.694Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-25T09:48:41.694Z"
             },
             {
               "$type": "Document",
@@ -77,8 +75,7 @@
               "RelativeToolTip": "HotelBookingSystemAPI\\Services\\HotelService.cs",
               "ViewState": "AQIAALUAAAAAAAAAAIAywIsAAAAyAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-25T09:48:39.34Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-25T09:48:39.34Z"
             }
           ]
         }
