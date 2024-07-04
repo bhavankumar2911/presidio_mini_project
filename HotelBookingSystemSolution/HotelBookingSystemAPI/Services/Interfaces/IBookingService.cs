@@ -10,5 +10,7 @@ namespace HotelBookingSystemAPI.Services.Interfaces
         public Task<IEnumerable<Booking>> ViewGuestBookings(int guestId);
 
         public Task<IEnumerable<Booking>> ViewHotelBookings(int hotelId);
+
+        public Task<AmountReturnDTO> CalculateBookingAmount(BookingInputDTO bookingInputDTO);
     }
 }

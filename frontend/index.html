@@ -13,8 +13,79 @@
     <link rel="stylesheet" href="./styles/main.css" />
   </head>
   <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img
+            src="./media/images/logo.png"
+            alt="Logo"
+            class="d-inline-block"
+          />
+          <span class="navbar-brand h1">Navbar</span></a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/">Home</a>
+            </li>
+          </ul>
+          <!-- <form class="d-flex" role="search">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            <button class="btn btn-outline-success" type="submit">
+              Search
+            </button>
+          </form> -->
+          <div
+            class="spinner-border text-primary"
+            role="status"
+            id="nav-loader"
+          >
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <button
+            type="button"
+            class="btn btn-outline-primary d-none"
+            id="auth-button"
+          >
+            Primary
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <div class="alert alert-danger d-none" role="alert" id="alert">
+      Something went wrong.
+    </div>
+
+    <!-- loader -->
+    <div
+      class="d-flex align-items-center justify-content-center min-vh-100"
+      id="loader"
+    >
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+
     <div class="container">
-      <div class="card p-3 mb-3">
+      <div class="row g-3 d-none" id="content">
+        <!-- <div class="card p-3 mb-3">
         <div class="d-flex justify-content-between mb-2">
           <h3>Hyatt</h3>
           <a href="" class="btn btn-primary">View</a>
@@ -49,7 +120,15 @@
           <p class="col-md-6 col-lg-3"><b>Max Guests: </b>2</p>
           <p class="col-md-6 col-lg-3"><b>Rating: </b>4.3</p>
         </div>
+      </div> -->
       </div>
     </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" src="./js/home/script.js"></script>
+    <script type="module" src="./js/navbar.js"></script>
   </body>
 </html>

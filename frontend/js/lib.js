@@ -40,3 +40,20 @@ export function checkAuthorization(userRole, redirectUrl) {
 
   return;
 }
+
+export function logout(tokenName) {
+  localStorage.removeItem(tokenName);
+}
+
+export const showMessage = (messageElement, errorText) => {
+  messageElement.classList.remove("d-none");
+  messageElement.innerText = errorText;
+};
+
+export const hideElement = (element) => {
+  element.classList.add("d-none");
+};
+
+export const showElement = (element) => {
+  element.classList.remove("d-none");
+};

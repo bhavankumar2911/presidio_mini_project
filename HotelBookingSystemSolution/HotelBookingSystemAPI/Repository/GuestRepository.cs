@@ -47,7 +47,7 @@ namespace HotelBookingSystemAPI.Repository
 
         public async Task<Guest> GetByKey(int key)
         {
-            var guest = await _context.Guests.Include(g => g.Reviews).FirstOrDefaultAsync(e => e.Id == key);
+            var guest = await _context.Guests.FirstOrDefaultAsync(e => e.Id == key);
 
             if (guest != null) return guest;
 

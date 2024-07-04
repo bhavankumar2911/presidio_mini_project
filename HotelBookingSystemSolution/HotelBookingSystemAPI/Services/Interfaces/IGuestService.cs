@@ -7,5 +7,7 @@ namespace HotelBookingSystemAPI.Services.Interfaces
         public Task<RegisterGuestReturnDTO> RegisterNewGuest(RegisterGuestInputDTO registerGuestInputDTO);
 
         public Task<LoginGuestReturnDTO> LoginGuest(LoginGuestInputDTO loginGuestInputDTO);
+
+        public LoginCheckResponseDTO CheckGuestLoggedIn();
     }
 }

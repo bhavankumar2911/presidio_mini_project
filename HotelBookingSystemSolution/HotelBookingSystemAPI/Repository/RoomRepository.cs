@@ -68,7 +68,31 @@ namespace HotelBookingSystemAPI.Repository
 
         public async Task<Room> GetByKey(int key)
         {
-            var room = await _context.Rooms.FirstOrDefaultAsync(e => e.Id == key);
+            var room = await _context.Rooms.Select(r => new Room
+            {
+                Id = r.Id,
+                PricePerDay = r.PricePerDay,
+                RoomNumber = r.RoomNumber,
+                FloorNumber = r.FloorNumber,
+                MaxGuests = r.MaxGuests,
+                Size = r.Size,
+                IsAvailable = r.IsAvailable,
+                HotelId = r.HotelId,
+                Hotel = new Hotel
+                {
+                    Name = r.Hotel.Name,
+                    Phone = r.Hotel.Phone,
+                    Description = r.Hotel.Description,
+                    Address = r.Hotel.Address,
+                    Reviews = r.Hotel.Reviews.Select(r => new Review
+                    {
+                        Id = r.Id,
+                        Content = r.Content,
+                        Guest = r.Guest,
+                    }).ToList(),
+                    StarRating = r.Hotel.StarRating,
+                }
+            }).FirstOrDefaultAsync(e => e.Id == key);
 
             if (room != null) return room;
 

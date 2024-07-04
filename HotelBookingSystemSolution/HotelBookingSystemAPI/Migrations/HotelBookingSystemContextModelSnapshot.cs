@@ -394,20 +394,18 @@ namespace HotelBookingSystemAPI.Migrations
             modelBuilder.Entity("HotelBookingSystemAPI.Models.Review", b =>
                 {
                     b.HasOne("HotelBookingSystemAPI.Models.Guest", "Guest")
-                        .WithMany("Reviews")
+                        .WithMany()
                         .HasForeignKey("GuestId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("HotelBookingSystemAPI.Models.Hotel", "Hotel")
+                    b.HasOne("HotelBookingSystemAPI.Models.Hotel", null)
                         .WithMany("Reviews")
                         .HasForeignKey("HotelId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Guest");
-
-                    b.Navigation("Hotel");
                 });
 
             modelBuilder.Entity("HotelBookingSystemAPI.Models.Room", b =>
@@ -429,8 +427,6 @@ namespace HotelBookingSystemAPI.Migrations
             modelBuilder.Entity("HotelBookingSystemAPI.Models.Guest", b =>
                 {
                     b.Navigation("Ratings");
-
-                    b.Navigation("Reviews");
                 });
 
             modelBuilder.Entity("HotelBookingSystemAPI.Models.Hotel", b =>

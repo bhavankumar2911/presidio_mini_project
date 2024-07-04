@@ -202,5 +202,13 @@ namespace HotelBookingSystemAPI.Services
 
             throw new WrongGuestLoginCredentialsException();
         }
+
+        public LoginCheckResponseDTO CheckGuestLoggedIn()
+        {
+            return new LoginCheckResponseDTO
+            {
+                LoggedIn = true,
+            };
+        }
     }
 }

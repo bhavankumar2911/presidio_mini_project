@@ -8,25 +8,41 @@
     <link rel="stylesheet" href="./styles/main.css" />
   </head>
   <body>
-    <div class="container">
-      <h2>Lemon Tree</h2>
+    <div
+      class="alert alert-danger d-none"
+      role="alert"
+      id="error-message"
+    ></div>
+
+    <!-- loader -->
+    <div
+      class="d-flex align-items-center justify-content-center min-vh-100"
+      id="loader"
+    >
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+
+    <div class="container d-none" id="content">
+      <h2 id="hotel-name" class="my-4"></h2>
       <div class="row g-3">
         <div class="col col-md-6">
-          <div class="card">
+          <div class="card h-100">
             <div class="card-body">
               <table class="table">
                 <tbody>
                   <tr>
                     <td><b>Price</b></td>
-                    <td>Rs. 15,000 (per day)</td>
+                    <td>Rs. <span id="price"></span> (per day)</td>
                   </tr>
                   <tr>
                     <td><b>Maximum Guests</b></td>
-                    <td>4</td>
+                    <td id="max-guests"></td>
                   </tr>
                   <tr>
                     <td><b>Room Size</b></td>
-                    <td>Large</td>
+                    <td id="size"></td>
                   </tr>
                 </tbody>
               </table>
@@ -37,10 +53,7 @@
           <div class="card">
             <div class="card-body">
               <h3 class="card-title">Address</h3>
-              <p>
-                72, Sardar Patel Rd, Venkta Puram, Guindy, Chennai, Tamil Nadu,
-                600032.
-              </p>
+              <p id="address"></p>
             </div>
           </div>
         </div>
@@ -62,43 +75,16 @@
             </button>
           </div>
           <div class="collapse" id="collapseExample">
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Exercitationem, molestiae?
-                </p>
-                <p class="badge text-bg-primary"><em>Jimmy McGill</em></p>
-              </li>
-
-              <li class="list-group-item">
-                <p>
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Rerum animi beatae aliquid velit hic iusto veniam obcaecati.
-                  Eos, voluptatem maiores.
-                </p>
-                <p class="badge text-bg-primary"><em>Chuck McGill</em></p>
-              </li>
-
-              <li class="list-group-item">
-                <p>
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iste
-                  modi unde magni ducimus, vel eaque amet tenetur cupiditate a!
-                  Eligendi perspiciatis eum nihil earum praesentium dolor libero
-                  exercitationem vitae assumenda quidem, maxime illo commodi
-                  recusandae, eos ex voluptatibus fuga quasi.
-                </p>
-                <p class="badge text-bg-primary"><em>Kim</em></p>
-              </li>
-            </ul>
+            <ul class="list-group list-group-flush" id="reviews"></ul>
           </div>
         </div>
       </div>
 
-      <div class="card">
+      <div class="card mt-3 mb-5">
         <div class="card-body">
           <div class="row">
             <div class="col-12 col-md-6">
+              <h3 class="card-title mb-3">Book this room</h3>
               <form action="">
                 <div class="mb-3">
                   <label for="checkinDateTime" class="form-label"
@@ -126,10 +112,12 @@
 
                 <div class="d-flex justify-content-between">
                   <h3>Guests</h3>
-                  <button class="btn btn-primary">Add one more</button>
+                  <button class="btn btn-primary" id="add-guest-btn">
+                    Add guest
+                  </button>
                 </div>
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item">
+                <ul class="list-group list-group-flush" id="guest-list">
+                  <!-- <li class="list-group-item">
                     <div class="mb-2">
                       <input
                         type="text"
@@ -141,38 +129,92 @@
                     </div>
 
                     <div class="row g-2">
-                      <div class="mb-3 col-12 col-sm-6">
+                      <div class="mb-3 col-12 col-sm-4 col-md-5">
                         <select
                           class="form-select"
                           aria-label="Default select example"
                           name="gender"
                         >
-                          <option selected>Select Gender</option>
+                          <option value="">Gender</option>
                           <option value="male">Male</option>
                           <option value="female">Female</option>
                         </select>
                       </div>
 
-                      <div class="mb-3 col-12 col-sm-6">
+                      <div class="mb-3 col-8 col-sm-4 col-md-5">
                         <input
                           type="number"
                           class="form-control"
                           id="age"
                           name="age"
-                          placeholder="Guest age"
+                          placeholder="Age"
                         />
                       </div>
+
+                      <div class="mb-3 col-4 col-sm-4 col-md-2">
+                        <div class="d-grid">
+                          <button class="btn btn-outline-danger">Delete</button>
+                        </div>
+                      </div>
                     </div>
-                  </li>
-                  <li class="list-group-item">A second item</li>
+                  </li> -->
                 </ul>
               </form>
             </div>
-            <div class="col-12 col-md-6">c</div>
+            <div class="col-12 col-md-6">
+              <h3 class="card-title mb-3">Booking summary</h3>
+
+              <p class="text-secondary">
+                <em id="summary-intro">Fill in the details first!</em>
+              </p>
+
+              <div
+                class="d-flex justify-content-center d-none"
+                id="booking-summary-loader"
+              >
+                <div class="spinner-border text-primary my-5" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+              </div>
+
+              <table class="table table-striped d-none" id="summary">
+                <tbody>
+                  <tr>
+                    <th scope="row">Duration:</th>
+                    <td id="duration"></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Price:</th>
+                    <td id="roomPrice"></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Tax:</th>
+                    <td id="tax"></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Total price:</th>
+                    <td id="totalPrice"></td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div
+                class="alert alert-danger d-none"
+                role="alert"
+                id="booking-error-message"
+              ></div>
+
+              <div class="d-grid">
+                <button class="btn btn-primary d-none" id="book-btn">
+                  Book Now
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
     <script src="./js/bootstrap.bundle.js"></script>
+    <script type="module" src="./js/room/room.js"></script>
   </body>
 </html>

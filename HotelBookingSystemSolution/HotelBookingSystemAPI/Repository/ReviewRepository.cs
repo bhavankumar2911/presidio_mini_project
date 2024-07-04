@@ -38,7 +38,14 @@ namespace HotelBookingSystemAPI.Repository
 
         async public Task<IEnumerable<Review>> GetAll()
         {
-            var reviews = await _context.Reviews.ToListAsync();
+            var reviews = await _context.Reviews.Select(r => new Review
+            {
+                Id = r.Id,
+                Content = r.Content,
+                Guest = r.Guest,
+                GuestId = r.GuestId,
+                HotelId = r.HotelId,
+            }).ToListAsync();
 
             //if (reviews.Count == 0) throw new NoReviewsFoundException();
 

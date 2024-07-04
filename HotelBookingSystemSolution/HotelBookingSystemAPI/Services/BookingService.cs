@@ -1,4 +1,5 @@
 ﻿using HotelBookingSystemAPI.Exceptions.Booking;
+using HotelBookingSystemAPI.Exceptions.Guest;
 using HotelBookingSystemAPI.Exceptions.Room;
 using HotelBookingSystemAPI.Models;
 using HotelBookingSystemAPI.Models.DTOs.BookingDTOs;
@@ -33,31 +34,8 @@ namespace HotelBookingSystemAPI.Services
 
             if (bookings.Count() > 0)
             {
-                //bookings = bookings.OrderBy(b => b.CheckoutDateTime).ToList();
-
-                //Booking latestBooking = bookings.Last();
-
-                //Console.WriteLine("\ndate time: \n" + bookingInputDTO.CheckinDateTime);
-                //Console.WriteLine ("\ndate time: \n" + latestBooking.CheckoutDateTime);
-
-                //if (bookingInputDTO.CheckinDateTime < latestBooking.CheckoutDateTime) throw new RoomAlreadyBookedException();
-
-                //DateTime.TryParse(bookingInputDTO.CheckinDateTime.ToString(), out DateTime newIn);
-                //DateTime.TryParse(bookingInputDTO.CheckoutDateTime.ToString(), out DateTime newOut);
                 foreach (var booking in bookings)
                 {
-                    //DateTime.TryParse(booking.CheckinDateTime.ToString(), out DateTime oldIn);
-                    //DateTime.TryParse(booking.CheckoutDateTime.ToString(), out DateTime oldOut);
-
-                    //if ((newOut > oldIn && newOut < oldOut) ||
-                    //    (newIn > oldIn && newIn < oldOut) ||
-                    //    (newIn < oldIn && newOut > oldOut) ||
-                    //    (newIn == oldIn && newOut == oldOut) ||
-                    //    (newIn < oldIn && newOut == oldOut) ||
-                    //    (newIn == oldIn && newOut > oldOut))
-                    //        {
-                    //    throw new RoomAlreadyBookedException();
-                    //        }
 
                     if ((bookingInputDTO.CheckoutDateTime > booking.CheckinDateTime &&
                         bookingInputDTO.CheckoutDateTime < booking.CheckoutDateTime) ||
@@ -80,12 +58,20 @@ namespace HotelBookingSystemAPI.Services
         {
             if (bookingInputDTO.CheckoutDateTime < bookingInputDTO.CheckinDateTime) throw new InvalidCheckinAndCheckoutException();
 
-            if (bookingInputDTO.CheckoutDateTime.Subtract(bookingInputDTO.CheckinDateTime).Hours < 3) throw new LessBookingTimeException();
+            if (bookingInputDTO.CheckoutDateTime.Subtract(bookingInputDTO.CheckinDateTime).TotalHours < 3) throw new LessBookingTimeException();
         }
 
         private void ValidateGuests (IList<BookingGuestInputDTO> guests, Room room)
         {
+            if (guests.Count() == 0) throw new NoGuestException();
+
             if (guests.Count() > room.MaxGuests) throw new MaxGuestsLimitException(room.MaxGuests);
+
+            foreach (var guest in guests)
+            {
+                if (guest.Name == "" || guest.Age == 0 || guest.Gender == "")
+                    throw new IncompleteGuestInformationException();
+            }
 
             if (guests.All(g => g.Age < 18))
                 throw new GuestsAgeRestrictionException();
@@ -93,7 +79,7 @@ namespace HotelBookingSystemAPI.Services
 
         private double CalculateTotalPrice (BookingInputDTO bookingInputDTO, Room room)
         {
-            int stayingHours = bookingInputDTO.CheckoutDateTime.Subtract(bookingInputDTO.CheckinDateTime).Hours;
+            double stayingHours = bookingInputDTO.CheckoutDateTime.Subtract(bookingInputDTO.CheckinDateTime).TotalHours;
 
             double price = stayingHours * (room.PricePerDay / 24);
 
@@ -153,6 +139,25 @@ namespace HotelBookingSystemAPI.Services
             await SaveBookingGuests(bookingInputDTO.Guests, booking.Id);
 
             return newBooking;
+        }
+
+        public async Task<AmountReturnDTO> CalculateBookingAmount(BookingInputDTO bookingInputDTO) {
+            Room room = await _roomRepository.GetByKey(bookingInputDTO.RoomID);
+
+            ValidateCheckinAndCheckout(bookingInputDTO);
+
+            await CheckRoomAvailability(bookingInputDTO, room);
+
+            // ValidateGuests(bookingInputDTO.Guests, room);
+
+            double totalPrice = Math.Round(CalculateTotalPrice(bookingInputDTO, room), 2);
+
+            double amountWithTax = Math.Round(IncludeTaxes(totalPrice, room), 2);
+
+            return new AmountReturnDTO {
+                WithTax = amountWithTax,
+                WithoutTax = totalPrice
+            };
         }
 
         public async Task<IEnumerable<Booking>> ViewGuestBookings(int guestId)

@@ -11,11 +11,13 @@ namespace HotelBookingSystemAPI.Services
     {
         private readonly IRepository<int, Hotel> _hotelRepository;
         private readonly IRepository<int, Room> _roomRepository;
+        private readonly IRepository<int, Review> _reviewRepository;
 
-        public RoomService(IRepository<int, Hotel> hotelRepository, IRepository<int, Room> roomRepository)
+        public RoomService(IRepository<int, Hotel> hotelRepository, IRepository<int, Room> roomRepository, IRepository<int, Review> reviewRepository)
         {
             _hotelRepository = hotelRepository;
             _roomRepository = roomRepository;
+            _reviewRepository = reviewRepository;
         }
 
         public async Task<Room> AddNewRoom(RoomInputDTO roomInputDTO, int hotelId)
@@ -72,6 +74,13 @@ namespace HotelBookingSystemAPI.Services
             if (rooms.Count() == 0) throw new NoRoomsAvailableExpection();
 
             return rooms;
+        }
+
+        public async Task<Room> ViewSingleRoom(int roomId)
+        {
+            Room room = await _roomRepository.GetByKey(roomId);
+           
+            return room;
         }
     }
 }

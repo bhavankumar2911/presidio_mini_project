@@ -1,5 +1,6 @@
 ﻿using HotelBookingSystemAPI.Exceptions;
 using HotelBookingSystemAPI.Exceptions.Booking;
+using HotelBookingSystemAPI.Exceptions.Guest;
 using HotelBookingSystemAPI.Exceptions.Room;
 using HotelBookingSystemAPI.Models;
 using HotelBookingSystemAPI.Models.DTOs.BookingDTOs;
@@ -69,6 +70,10 @@ namespace HotelBookingSystemAPI.Controllers
             {
                 return BadRequest(new ErrorResponse(StatusCodes.Status400BadRequest, ex.Message));
             }
+            catch (IncompleteGuestInformationException ex)
+            {
+                return BadRequest(new ErrorResponse(StatusCodes.Status400BadRequest, ex.Message));
+            }
             catch (RoomNotFoundException ex)
             {
                 return BadRequest(new ErrorResponse(StatusCodes.Status404NotFound, ex.Message));
@@ -122,6 +127,54 @@ namespace HotelBookingSystemAPI.Controllers
             catch (NoBookingsAvailableException ex)
             {
                 return NotFound(new ErrorResponse(StatusCodes.Status404NotFound, ex.Message));
+            }
+        }
+
+        [Authorize(Roles = "guest")]
+        [HttpPost("/book/amount")]
+        [ProducesResponseType(typeof(SuccessResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status422UnprocessableEntity)]
+        [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status409Conflict)]
+        public async Task<ActionResult<SuccessResponse>> GetBookingAmount (BookingInputDTO bookingInputDTO) {
+            try
+            {
+                AmountReturnDTO amountReturnDTO = await _bookingService.CalculateBookingAmount(bookingInputDTO);
+
+                return Ok(new SuccessResponse(amountReturnDTO));
+            }
+            catch (InvalidCheckinAndCheckoutException ex)
+            {
+                return BadRequest(new ErrorResponse(StatusCodes.Status400BadRequest, ex.Message));
+            }
+            catch (LessBookingTimeException ex)
+            {
+                return BadRequest(new ErrorResponse(StatusCodes.Status422UnprocessableEntity, ex.Message));
+            }
+            catch (RoomNotAvailableException ex)
+            {
+                return BadRequest(new ErrorResponse(StatusCodes.Status404NotFound, ex.Message));
+            }
+            catch (RoomAlreadyBookedException ex)
+            {
+                return BadRequest(new ErrorResponse(StatusCodes.Status409Conflict, ex.Message));
+            }
+            catch (MaxGuestsLimitException ex)
+            {
+                return BadRequest(new ErrorResponse(StatusCodes.Status400BadRequest, ex.Message));
+            }
+            catch (GuestsAgeRestrictionException ex)
+            {
+                return BadRequest(new ErrorResponse(StatusCodes.Status400BadRequest, ex.Message));
+            }
+            catch (RoomNotFoundException ex)
+            {
+                return BadRequest(new ErrorResponse(StatusCodes.Status404NotFound, ex.Message));
+            }
+            catch (NoGuestException ex)
+            {
+                return BadRequest(new ErrorResponse(StatusCodes.Status400BadRequest, ex.Message));
             }
         }
     }

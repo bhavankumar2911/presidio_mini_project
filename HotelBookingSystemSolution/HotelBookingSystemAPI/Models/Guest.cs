@@ -17,7 +17,7 @@ namespace HotelBookingSystemAPI.Models
         //[ForeignKey("User")]
         public int UserId { get; set; }
 
-        public ICollection<Review> Reviews { get; set; }
+        //public ICollection<Review> Reviews { get; set; }
         public ICollection<Rating>? Ratings { get; set; }
     }
 }

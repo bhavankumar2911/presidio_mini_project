@@ -8,5 +8,7 @@ namespace HotelBookingSystemAPI.Services.Interfaces
         public Task<Room> AddNewRoom(RoomInputDTO roomInputDTO, int hotelId);
 
         public Task<IEnumerable<Room>> ListRoomsForBooking(RoomFilterDTO roomFilterDTO);
+
+        public Task<Room> ViewSingleRoom(int roomId);
     }
 }

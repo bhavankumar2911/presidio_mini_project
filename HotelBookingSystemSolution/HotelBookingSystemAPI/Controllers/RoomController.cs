@@ -51,7 +51,7 @@ namespace HotelBookingSystemAPI.Controllers
         [HttpGet("/room")]
         [ProducesResponseType(typeof(SuccessResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<SuccessResponse>> ListRooms(RoomFilterDTO roomFilterDTO)
+        public async Task<ActionResult<SuccessResponse>> ListRooms([FromQuery]RoomFilterDTO roomFilterDTO)
         {
             try
             {
@@ -59,6 +59,21 @@ namespace HotelBookingSystemAPI.Controllers
 
                 return Ok(new SuccessResponse(rooms));
             } catch (NoRoomsAvailableExpection ex)
+            {
+                return NotFound(new ErrorResponse(StatusCodes.Status404NotFound, ex.Message));
+            }
+        }
+
+        [HttpGet("/room/{roomId}")]
+        [ProducesResponseType(typeof(SuccessResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<SuccessResponse>> GetRoom (int roomId)
+        {
+            try
+            {
+                Room room = await _roomService.ViewSingleRoom(roomId);
+                return Ok(new SuccessResponse(room));
+            } catch (RoomNotFoundException ex)
             {
                 return NotFound(new ErrorResponse(StatusCodes.Status404NotFound, ex.Message));
             }

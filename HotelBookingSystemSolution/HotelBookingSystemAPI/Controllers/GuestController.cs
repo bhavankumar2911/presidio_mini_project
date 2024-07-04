@@ -6,6 +6,7 @@ using HotelBookingSystemAPI.Exceptions;
 using HotelBookingSystemAPI.Exceptions.Guest;
 using HotelBookingSystemAPI.Services.Interfaces;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HotelBookingSystemAPI.Controllers
 {
@@ -59,6 +60,14 @@ namespace HotelBookingSystemAPI.Controllers
             {
                 return Unauthorized(new ErrorResponse(401, ex.Message));
             }
+        }
+
+        [Authorize(Roles = "guest")]
+        [HttpGet("/guest/authorize")]
+        [ProducesResponseType(typeof(LoginCheckResponseDTO), StatusCodes.Status200OK)]
+        public ActionResult<LoginCheckResponseDTO> CheckLogin()
+        {
+            return Ok(_guestService.CheckGuestLoggedIn());
         }
     }
 }
