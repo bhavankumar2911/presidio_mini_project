@@ -4,6 +4,7 @@ using HotelBookingSystemAPI.Exceptions.Room;
 using HotelBookingSystemAPI.Models;
 using HotelBookingSystemAPI.Models.DTOs.BookingDTOs;
 using HotelBookingSystemAPI.Models.DTOs.BookingGuestDTOs;
+using HotelBookingSystemAPI.Models.DTOs.PaymentDTOs;
 using HotelBookingSystemAPI.Repository.Interfaces;
 using HotelBookingSystemAPI.Services.Interfaces;
 
@@ -14,12 +15,14 @@ namespace HotelBookingSystemAPI.Services
         private readonly IRepository<int, Room> _roomRepository;
         private readonly IRepository<int, Booking> _bookingRepository;
         private readonly IRepository<int, BookingGuest> _bookingGuestRepository;
+        private readonly IPaymentService _paymentService;
 
-        public BookingService (IRepository<int, Room> roomRepository, IRepository<int, Booking> bookingRepository, IRepository<int, BookingGuest> bookingGuestRepository)
+        public BookingService (IRepository<int, Room> roomRepository, IRepository<int, Booking> bookingRepository, IRepository<int, BookingGuest> bookingGuestRepository, IPaymentService paymentService)
         {
             _roomRepository = roomRepository;
             _bookingRepository = bookingRepository;
             _bookingGuestRepository = bookingGuestRepository;
+            _paymentService = paymentService;
         }
 
         private async Task CheckRoomAvailability (BookingInputDTO bookingInputDTO, Room room)
@@ -179,6 +182,25 @@ namespace HotelBookingSystemAPI.Services
             if (bookings.Count() == 0) throw new NoBookingsAvailableException();
             
             return bookings;
+        }
+
+        public async Task<PaymentOrderIdReturnDTO> GivePaymentOrderId(BookingInputDTO bookingInputDTO)
+        {
+            Room room = await _roomRepository.GetByKey(bookingInputDTO.RoomID);
+
+            ValidateCheckinAndCheckout(bookingInputDTO);
+
+            await CheckRoomAvailability(bookingInputDTO, room);
+
+            ValidateGuests(bookingInputDTO.Guests, room);
+
+            double totalPrice = CalculateTotalPrice(bookingInputDTO, room);
+
+            double amountWithTax = IncludeTaxes(totalPrice, room);
+
+            string orderId = _paymentService.GetPaymentOrderId(amountWithTax);
+
+            return new PaymentOrderIdReturnDTO { OrderId = orderId };
         }
     }
 }

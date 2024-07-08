@@ -57,3 +57,17 @@ export const hideElement = (element) => {
 export const showElement = (element) => {
   element.classList.remove("d-none");
 };
+
+export const createAddress = (address) => {
+    return `
+        ${address.buildingNoAndName},
+        ${address.streetNoAndName},
+        ${address.city},
+        ${address.state},
+        ${address.pincode}
+    `;
+};
+
+export const getDateString = (date) => {
+    return new Date(date).toLocaleString();
+}

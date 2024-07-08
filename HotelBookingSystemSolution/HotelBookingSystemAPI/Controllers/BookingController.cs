@@ -78,6 +78,10 @@ namespace HotelBookingSystemAPI.Controllers
             {
                 return BadRequest(new ErrorResponse(StatusCodes.Status404NotFound, ex.Message));
             }
+            catch (NoGuestException ex)
+            {
+                return BadRequest(new ErrorResponse(StatusCodes.Status404NotFound, ex.Message));
+            }
         }
 
         [Authorize(Roles = "guest")]
@@ -176,6 +180,11 @@ namespace HotelBookingSystemAPI.Controllers
             {
                 return BadRequest(new ErrorResponse(StatusCodes.Status400BadRequest, ex.Message));
             }
+            catch (IncompleteGuestInformationException ex)
+            {
+                return BadRequest(new ErrorResponse(StatusCodes.Status400BadRequest, ex.Message));
+            }
         }
+
     }
 }

@@ -41,6 +41,9 @@ namespace HotelBookingSystemAPI.Repository
             //var bookings = await _context.Bookings.ToListAsync();
             var bookings = _context.Bookings.Select(b => new Booking
             {
+                Id = b.Id,
+                Amount = b.Amount,
+                DateOfBooking = b.DateOfBooking,
                 CheckinDateTime = b.CheckinDateTime,
                 CheckoutDateTime = b.CheckoutDateTime,
                 BookingGuests = (ICollection<BookingGuest>)b.BookingGuests.Select(bg => new BookingGuest { 
@@ -56,7 +59,14 @@ namespace HotelBookingSystemAPI.Repository
                     RoomNumber = b.Room.RoomNumber,
                     FloorNumber = b.Room.FloorNumber,
                     MaxGuests = b.Room.MaxGuests,
-                    Hotel = b.Room.Hotel,
+                    Hotel = new Hotel
+                    {
+                        Name = b.Room.Hotel.Name,
+                        Phone = b.Room.Hotel.Phone,
+                        Description = b.Room.Hotel.Description,
+                        StarRating = b.Room.Hotel.StarRating,
+                        Address = b.Room.Hotel.Address,
+                    },
                 },
             });
 

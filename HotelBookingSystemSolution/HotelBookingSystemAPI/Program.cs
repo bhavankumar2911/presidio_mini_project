@@ -69,6 +69,7 @@ namespace HotelBookingSystemAPI
             builder.Services.AddScoped<IBookingService, BookingService>();
             builder.Services.AddScoped<IReviewService, ReviewService>();
             builder.Services.AddScoped<IRatingService, RatingService>();
+            builder.Services.AddScoped<IPaymentService, PaymentService>();
             #endregion
 
             #region CORS

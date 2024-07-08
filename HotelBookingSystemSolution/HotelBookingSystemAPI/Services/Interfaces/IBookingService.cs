@@ -1,5 +1,6 @@
 ﻿using HotelBookingSystemAPI.Models;
 using HotelBookingSystemAPI.Models.DTOs.BookingDTOs;
+using HotelBookingSystemAPI.Models.DTOs.PaymentDTOs;
 
 namespace HotelBookingSystemAPI.Services.Interfaces
 {
@@ -12,5 +13,7 @@ namespace HotelBookingSystemAPI.Services.Interfaces
         public Task<IEnumerable<Booking>> ViewHotelBookings(int hotelId);
 
         public Task<AmountReturnDTO> CalculateBookingAmount(BookingInputDTO bookingInputDTO);
+
+        public Task<PaymentOrderIdReturnDTO> GivePaymentOrderId(BookingInputDTO bookingInputDTO);
     }
 }

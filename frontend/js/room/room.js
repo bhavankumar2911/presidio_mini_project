@@ -1,5 +1,5 @@
 import { API_HOST } from "../config.js";
-import { hideElement, showElement, showMessage } from "../lib.js";
+import { hideElement, redirect, showElement, showMessage } from "../lib.js";
 
 const d = document;
 const errorMessage = d.getElementById("error-message");
@@ -111,17 +111,6 @@ const fetchRoom = async () => {
   }
 };
 
-// const updateGuestData = (fieldName, guestId, fieldValue) => {
-//   guestData = [
-//     ...guestData.map((guest) => {
-//       if (guest.id == guestId) return { ...guest, [fieldName]: fieldValue };
-
-//       return { ...guest };
-//     }),
-//   ];
-
-//   showGuestAddForms();
-// };
 const updateGuestsData = (guestId, fieldName, fieldValue) => {
   guestData = guestData.map((guest) => {
     if (guest.id == guestId) return { ...guest, [fieldName]: fieldValue };
@@ -131,67 +120,6 @@ const updateGuestsData = (guestId, fieldName, fieldValue) => {
   console.table(guestData);
 
   showGuestAddForms();
-};
-
-const addEventListeners = () => {
-  // guest names
-  const guestNames = d.getElementsByClassName("guest-name");
-  const guestGenders = d.getElementsByClassName("guest-gender");
-  const guestAges = d.getElementsByClassName("guest-age");
-  const deleteButtons = d.getElementsByClassName("guest-delete-btn");
-
-  // delete guests
-  for (let i = 0; i < deleteButtons.length; i++) {
-    const deleteButton = deleteButtons[i];
-    deleteButton.addEventListener("click", (e) => {
-      e.preventDefault();
-      guestData = [
-        ...guestData.filter((guest) => guest.id != e.target.dataset.guestId),
-      ];
-
-      console.log(guestData);
-
-      if (guestData.length == 0) {
-        if (checkinDateTime.value == "" || checkoutDateTime.value == "") {
-          summaryIntro.innerText = "Fill in the details first!";
-        } else
-          summaryIntro.innerText = "Add atleast one guest to book this room.";
-        showElement(summaryIntro);
-        hideElement(bookBtn);
-      }
-
-      showGuestAddForms();
-    });
-  }
-
-  // guest name
-  for (let i = 0; i < guestNames.length; i++) {
-    const name = guestNames[i];
-
-    name.addEventListener("keyup", (e) => {
-      console.log("runn");
-      updateGuestData("name", e.target.dataset.guestId, e.target.value);
-    });
-  }
-
-  // guest gender
-  for (let i = 0; i < guestGenders.length; i++) {
-    const gender = guestGenders[i];
-    gender.addEventListener("change", (e) => {
-      console.log(e.target.value);
-      updateGuestData("gender", e.target.dataset.guestId, e.target.value);
-    });
-  }
-
-  // guest age
-  for (let i = 0; i < guestAges.length; i++) {
-    const age = guestAges[i];
-
-    age.addEventListener("keyup", (e) => {
-      console.log(guestData);
-      updateGuestData("age", e.target.dataset.guestId, e.target.value);
-    });
-  }
 };
 
 const getNewGuestId = () => {
@@ -204,19 +132,6 @@ const getNewGuestId = () => {
 };
 
 const addGuestForm = (event) => {
-  // event.preventDefault();
-
-  // guestData.push({
-  //   id: getNewGuestId(),
-  //   name: "",
-  //   gender: "",
-  //   age: 0,
-  // });
-
-  // console.log(guestData);
-
-  // showGuestAddForms();
-
   event.preventDefault();
 
   guestData.push({
@@ -518,9 +433,13 @@ const getAmount = async () => {
       }),
     });
 
+    if (response.status == 401) return redirect("/guest-login.html");
+
     const data = await response.json();
 
-    if (!response.ok) throw new Error(data.message);
+    if (!response.ok) {
+      throw new Error(data.message);
+    }
 
     return data.data;
   } catch (error) {
@@ -549,7 +468,7 @@ const bookRoom = async (e) => {
       ],
     });
 
-    const response = await fetch(`${API_HOST}/book`, {
+    const response = await fetch(`${API_HOST}/payment/order`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("guest_token")}`,
@@ -574,13 +493,126 @@ const bookRoom = async (e) => {
     bookBtn.disabled = false;
 
     const data = await response.json();
-    console.log(data);
+
     if (!response.ok) return showMessage(bookingErrorMessage, data.message);
 
     console.log(data);
+    openRazorpay(data.data.orderId);
+    // redirect(`./payment.html?order_id=${data.orderId}`);
   } catch (error) {
     console.error(error);
   }
+};
+
+const openRazorpay = (orderId) => {
+  // var options = {
+  //   name: "Hotel Booking",
+  //   order_id: orderId,
+  //   // image: "../../media/images/logo.png",
+  //   // prefill: {
+  //   //   name: "Gaurav Kumar",
+  //   //   email: "gaurav.kumar@example.com",
+  //   //   contact: "+919000090000",
+  //   // },
+  //   theme: {
+  //     color: "#3399cc",
+  //   },
+  // };
+  // options.theme.image_padding = false;
+  // options.handler = function (razorpayResponse) {
+  //   console.log(
+  //     razorpayResponse.razorpay_payment_id,
+  //     orderId,
+  //     razorpayResponse.razorpay_signature
+  //   );
+  // };
+  // options.modal = {
+  //   ondismiss: function () {
+  //     console.log("This code runs when the popup is closed");
+  //   },
+  //   escape: true,
+  //   backdropclose: false,
+  // };
+  // var orderId = "order_OUcZ6LWdiaSPOS";
+  var options = {
+    name: "Hotel Booking",
+    order_id: orderId,
+    image: "../../media/images/logo.png",
+    theme: {
+      color: "#3399cc",
+    },
+  };
+  options.theme.image_padding = false;
+  options.handler = async function (razorpayResponse) {
+    console.log(
+      razorpayResponse.razorpay_payment_id,
+      orderId,
+      razorpayResponse.razorpay_signature
+    );
+
+    // verify payment
+    try {
+      let response = await fetch(`${API_HOST}/payment/verify`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("guest_token")}`,
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({
+          paymentId: razorpayResponse.razorpay_payment_id,
+          orderId: orderId,
+          signature: razorpayResponse.razorpay_signature,
+        }),
+      });
+
+      if (response.status == 401) return redirect("/guest-login.html");
+
+      if (!response.ok)
+        return showMessage(bookingErrorMessage, response.data.message);
+
+      // make booking
+      response = await fetch(`${API_HOST}/book`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("guest_token")}`,
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({
+          checkinDateTime: checkinDateTime.value + ":00Z",
+          checkoutDateTime: checkoutDateTime.value + ":00Z",
+          roomID: getRoomIdFromURL(),
+          guests: [
+            ...guestData.map((guest) => ({
+              name: guest.name,
+              age: parseInt(guest.age),
+              gender: guest.gender,
+            })),
+          ],
+        }),
+      });
+
+      if (response.status == 401) return redirect("/guest-login.html");
+
+      if (!response.ok)
+        return showMessage(bookingErrorMessage, response.data.message);
+
+      return redirect("/guest-bookings.html");
+    } catch (error) {
+      console.error(error);
+      showMessage("Something went wrong.");
+    }
+  };
+  options.modal = {
+    ondismiss: function () {
+      console.log("This code runs when the popup is closed");
+    },
+    escape: true,
+    backdropclose: false,
+  };
+  var rzp = new Razorpay(options);
+  rzp.open();
 };
 
 // bookBtn.addEventListener("click", showBookingAmount);
