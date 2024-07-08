@@ -3,8 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\VC\\Documents\\Training\\MiniProject\\frontend\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\VC\\Documents\\Training\\MiniProject\\frontend\\js\\hotel\\bookings.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:js\\hotel\\bookings.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\VC\\Documents\\Training\\MiniProject\\frontend\\js\\guest\\bookings.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:js\\guest\\bookings.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\VC\\Documents\\Training\\MiniProject\\frontend\\hotel-bookings.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:hotel-bookings.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\VC\\Documents\\Training\\MiniProject\\frontend\\guest-bookings.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -22,43 +30,69 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "bookings.js",
               "DocumentMoniker": "C:\\Users\\VC\\Documents\\Training\\MiniProject\\frontend\\js\\guest\\bookings.js",
               "RelativeDocumentMoniker": "js\\guest\\bookings.js",
               "ToolTip": "C:\\Users\\VC\\Documents\\Training\\MiniProject\\frontend\\js\\guest\\bookings.js",
               "RelativeToolTip": "js\\guest\\bookings.js",
-              "ViewState": "AQIAACAAAAAAAAAAAAAAAIMAAAAdAAAA",
+              "ViewState": "AQIAAAcAAAAAAAAAAAAAADQAAAArAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2024-07-08T13:23:34.099Z",
+              "WhenOpened": "2024-07-08T17:34:17.496Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "bookings.js",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Training\\MiniProject\\frontend\\js\\hotel\\bookings.js",
+              "RelativeDocumentMoniker": "js\\hotel\\bookings.js",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Training\\MiniProject\\frontend\\js\\hotel\\bookings.js",
+              "RelativeToolTip": "js\\hotel\\bookings.js",
+              "ViewState": "AQIAAB4AAAAAAAAAAAAAADMAAAAjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-07-08T17:13:43.454Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "hotel-bookings.html",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Training\\MiniProject\\frontend\\hotel-bookings.html",
+              "RelativeDocumentMoniker": "hotel-bookings.html",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Training\\MiniProject\\frontend\\hotel-bookings.html",
+              "RelativeToolTip": "hotel-bookings.html",
+              "ViewState": "AQIAAA0AAAAAAAAAAAAAABcAAAAzAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2024-07-08T15:12:56.24Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "lib.js",
               "DocumentMoniker": "C:\\Users\\VC\\Documents\\Training\\MiniProject\\frontend\\js\\lib.js",
               "RelativeDocumentMoniker": "js\\lib.js",
               "ToolTip": "C:\\Users\\VC\\Documents\\Training\\MiniProject\\frontend\\js\\lib.js",
               "RelativeToolTip": "js\\lib.js",
-              "ViewState": "AQIAADQAAAAAAAAAAAAUwEkAAAAAAAAA",
+              "ViewState": "AQIAADEAAAAAAAAAAAAUwEkAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
               "WhenOpened": "2024-07-08T03:15:05.712Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "guest-bookings.html",
               "DocumentMoniker": "C:\\Users\\VC\\Documents\\Training\\MiniProject\\frontend\\guest-bookings.html",
               "RelativeDocumentMoniker": "guest-bookings.html",
               "ToolTip": "C:\\Users\\VC\\Documents\\Training\\MiniProject\\frontend\\guest-bookings.html",
               "RelativeToolTip": "guest-bookings.html",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAABQAAAAoAAAA",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAAGoAAAAWAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
               "WhenOpened": "2024-07-08T02:59:15.259Z",
               "EditorCaption": ""

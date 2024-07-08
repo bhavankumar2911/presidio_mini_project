@@ -179,7 +179,7 @@ namespace HotelBookingSystemAPI.Services
 
             bookings = bookings.Where(b => b.Room.Hotel.Id == hotelId).OrderByDescending(b => b.DateOfBooking);
 
-            if (bookings.Count() == 0) throw new NoBookingsAvailableException();
+            if (bookings.Count() == 0) throw new NoBookingsAvailableException("You don't have any bookings!");
             
             return bookings;
         }

@@ -2,8 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\js",
-    "\\js\\admin",
-    "\\js\\guest"
+    "\\js\\guest",
+    "\\js\\hotel"
   ],
   "SelectedNode": "\\js\\guest\\bookings.js",
   "PreviewInSolutionExplorer": false

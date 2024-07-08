@@ -51,7 +51,16 @@ namespace HotelBookingSystemAPI.Repository
                     Age = bg.Age,
                     Gender = bg.Gender,
                 }),
-                Guest = b.Guest,
+                Guest = new Guest
+                {
+                    Id = b.Guest.Id,
+                    Name = b.Guest.Name,
+                    Phone = b.Guest.Phone,
+                    User = new User
+                    {
+                        Email = b.Guest.User.Email
+                    },
+                },
                 Room = new Room
                 {
                     Id = b.Room.Id,
@@ -61,6 +70,7 @@ namespace HotelBookingSystemAPI.Repository
                     MaxGuests = b.Room.MaxGuests,
                     Hotel = new Hotel
                     {
+                        Id = b.Room.Hotel.Id,
                         Name = b.Room.Hotel.Name,
                         Phone = b.Room.Hotel.Phone,
                         Description = b.Room.Hotel.Description,

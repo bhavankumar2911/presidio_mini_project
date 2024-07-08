@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Bookings</title>
+    <link rel="stylesheet" href="./styles/bootstrap.css" />
+    <link rel="stylesheet" href="./styles/main.css" />
+</head>
+<body>
+    <!-- loader -->
+    <div class="d-flex align-items-center justify-content-center min-vh-100"
+         id="loader">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+
+    <div class="container d-none" id="content">
+        <h2 class="mt-4">Your Bookings</h2>
+        <div class="alert alert-danger d-none" role="alert" id="error-message"></div>
+        <ul class="list-group list-group-flush mt-4" id="bookingsList">
+            <!--<li class="list-group-item">
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <th scope="row">Booking Id</th>
+                            <td>101</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Checkin and Checkout</th>
+                            <td>8th July 2024, 11:00 to 8th July 2024, 17:00</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#collapseOne"
+                                    aria-expanded="false"
+                                    aria-controls="collapseOne">
+                                Booking details
+                            </button>
+                        </h2>
+                        <div id="collapseOne"
+                             class="accordion-collapse collapse"
+                             data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <table class="table table-striped">
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">Amount</th>
+                                            <td>Rs. 3423</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Booked on</th>
+                                            <td>8th July 2024, 11:00</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <h4 class="text-primary">Booked Guest</h4>
+                                <table class="table table-striped">
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">Name</th>
+                                            <td>Bhavan</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Email</th>
+                                            <td>bhavan@gmail.com</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Phone</th>
+                                            <td>+91 8787782332</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <h4 class="text-primary">Room details</h4>
+                                <table class="table table-striped">
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">Room No</th>
+                                            <td>101</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Floor No</th>
+                                            <td>3</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <h4 class="text-primary">Visiting Guests</h4>
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Phone</th>
+                                            <th scope="col">Gender</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Bhavan</td>
+                                            <td>+91 7878787878</td>
+                                            <td>21</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Saul</td>
+                                            <td>+91 7878787878</td>
+                                            <td>32</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>-->
+        </ul>
+    </div>
+
+    <script src="./js/bootstrap.bundle.js"></script>
+    <script type="module" src="./js/hotel/bookings.js"></script>
+</body>
+</html>
